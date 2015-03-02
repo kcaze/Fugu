@@ -3,6 +3,7 @@ using System.Collections;
 
 public class qEnemy : qObject {
 	public int score;
+	[System.NonSerialized]
 	public bool isActive;
 
 	protected virtual void Awake() {
@@ -11,8 +12,11 @@ public class qEnemy : qObject {
 	}
 
 	private IEnumerator Activate() {
-		yield return new WaitForSeconds(0.2f);
+		Instantiate(Resources.Load("Prefabs/ParticleEffects/Bubbler"), transform.position, Quaternion.identity);
+		GetComponent<MeshRenderer>().enabled = false;
+		yield return new WaitForSeconds(2.0f);
 		isActive = true;
+		GetComponent<MeshRenderer>().enabled = true;
 		yield return null;
 	}
 

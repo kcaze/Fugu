@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c750d4f35157e044beaaee156deb7ff
+guid: 73e81ff8a8bc4a647b11bf67bca8e23a
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Circle
+    4300000: Starfish
     7400000: Default Take
     9500000: //RootNode
   materials:

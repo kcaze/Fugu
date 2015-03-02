@@ -32,7 +32,7 @@ public class Level : MonoBehaviour {
 		}
 		EnemyInfo enemyInfo = new EnemyInfo ();
 		enemyInfo.time = t;
-		enemyInfo.position = new Vector3(x, 0.0f, y);
+		enemyInfo.position = new Vector3(x, 1.0f, y);
 		enemyInfo.name = s;
 		enemyInfo.spawned = false;
 		currentWave.Add(enemyInfo);

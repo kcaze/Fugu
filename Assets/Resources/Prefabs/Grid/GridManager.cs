@@ -53,7 +53,7 @@ public class GridManager : MonoBehaviour {
 				// kill enemies
 				for (int ii = 0; ii < LevelManager.instance.enemies.Count; ii++) {
 					qEnemy enemy = LevelManager.instance.enemies[ii];
-					if (enemy == null) continue;
+					if (enemy == null || !enemy.isActive) continue;
 					int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
 					if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
 						enemy.Circled(TileEnum.normalCircled);

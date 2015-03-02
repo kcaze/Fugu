@@ -20,6 +20,12 @@ public class Wanderer : qEnemy {
 	}
 
 	private void Update () {
+		if (!isActive) return;
+
+		//TODO: temporary code for animation
+		transform.Rotate(new Vector3(0, 100f*Time.deltaTime, 0), Space.World);
+
+		// move
 		transform.Translate(speed*direction*Time.deltaTime, Space.World);
 
 		// bounce

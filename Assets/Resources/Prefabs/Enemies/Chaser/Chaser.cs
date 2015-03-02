@@ -12,6 +12,7 @@ public class Chaser : qEnemy {
 	}
 
 	private void Update () {
+		if (!isActive) return;
 		Vector3 direction = this.player.transform.position - this.transform.position;
 		direction.y = 0;
 		direction.Normalize();
