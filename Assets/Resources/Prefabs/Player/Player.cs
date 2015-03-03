@@ -8,12 +8,14 @@ public class Player : qObject {
 	public float acceleration;
 	public float friction;
 	public float turnSpeed;
+	public float lightIntensity;
 
 	public TrailEnum trail { get; private set; }
 	private float velocityHorizontal, velocityVertical;
 	private float minSpeed = 1e-3f;
 	private LevelManager levelManager;
-	
+	private Light light;
+
 	public override void HandleInput(string type, float val) {
 		if (type == "AxisHorizontal") {
 			if (val != 0) {
@@ -34,9 +36,11 @@ public class Player : qObject {
 		else if (type == "QButtonDown" && val != 0) {
 			if (trail == TrailEnum.normal) {
 				trail = TrailEnum.none;
+				light.intensity = 0;
 			}
 			else if (trail == TrailEnum.none) {
-				trail = TrailEnum.normal;
+				trail = TrailEnum.normal;				
+				light.intensity = lightIntensity;
 			}
 		}
 	}
@@ -45,6 +49,8 @@ public class Player : qObject {
 		velocityHorizontal = 0;
 		velocityVertical = 0;
 		trail = TrailEnum.none;
+		light = GetComponentInChildren<Light>();
+		light.intensity = 0;
 	}
 	
 	private void Start() {
