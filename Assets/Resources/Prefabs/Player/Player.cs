@@ -14,8 +14,9 @@ public class Player : qObject {
 	public Color slowTrailColor;
 	
 	public TrailEnum trail { get; private set; }
+	[System.NonSerialized]
+	public float velocityHorizontal, velocityVertical;
 	private float maxSpeed;
-	private float velocityHorizontal, velocityVertical;
 	private float minSpeed = 1e-3f;
 	private LevelManager levelManager;
 	private new Light light;

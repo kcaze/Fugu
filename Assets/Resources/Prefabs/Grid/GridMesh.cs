@@ -49,7 +49,7 @@ public class GridMesh : MonoBehaviour{
 		for (int ii = 0; ii < this.tiles.list.Length; ii++) {
 			this.uvRect[this.tiles.list[ii].type] = rects[ii];
 		}
-		this.meshRenderer.material = new Material(Shader.Find("Diffuse"));
+		this.meshRenderer.material = new Material(Shader.Find("Self-Illumin/Diffuse"));
 		this.meshRenderer.material.SetTexture("_MainTex", textureAtlas);
 
 		// set up mesh

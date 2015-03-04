@@ -8,6 +8,8 @@ public class Level1 : Level {
 
 	public override void Setup() {
 		BeginLevel();
+		NewWave(1000);
+		AddEnemy(5, 5, "Avoider");
 		// beginning
 		NewWave(7);
 		AddEnemy(1,1, "Bouncer");
