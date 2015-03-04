@@ -7,7 +7,8 @@ public class Grid : MonoBehaviour {
 	public int gridHeight;
 	public float tileWidth;
 	public float tileHeight;
-	public TileEnum[] grid { get; private set; }
+	[System.NonSerialized]
+	public TileEnum[] grid;
 	public int gridSize { get; private set; }
 
 	private void Awake() {
@@ -48,19 +49,6 @@ public class Grid : MonoBehaviour {
 		int x = (int)(localPoint.x/this.tileWidth);
 		int y = (int)(localPoint.z/this.tileHeight);
 		return this.Index(x,y);
-	}
-
-	/* Sets the tile at position index to type.*/
-	public void SetTile(int index, TileEnum type) {
-		if (!this.IsValidIndex(index)) {
-			Debug.Log("Attempted to update grid at invalid index " + index);
-			return;
-		}
-		if (this.grid[index] == type || this.grid[index] == TileEnum.normalCircled) {
-			return;
-		}
-		this.grid[index] = type;
-
 	}
 
 	/* Tests if the tile at position index is enclosed by tiles of type tileType.
@@ -105,10 +93,12 @@ public class Grid : MonoBehaviour {
 	}
 
 	/* Flood fills from position index using type tileType.
-	 * Overwrites tiles not of tileType and treats tiles of tileType as boundary.*/
-	public void FloodFill1(int index, TileEnum tileType) {
-		if (!this.IsValidIndex(index) || this.grid[index] == tileType) return;
-		
+	 * Overwrites tiles not of tileType and treats tiles of tileType as boundary.
+	 * Returns number of tiles flood filled
+	 */
+	public int FloodFill1(int index, TileEnum tileType) {
+		if (!this.IsValidIndex(index) || this.grid[index] == tileType) return 0;
+
 		int[] dx = {1, 0, -1, 0};
 		int[] dy = {0, 1, 0, -1};
 		List<int> todo = new List<int> ();
@@ -130,13 +120,16 @@ public class Grid : MonoBehaviour {
 				}
 			}
 		}
+		return todo.Count;
 	}
 
 	/* Flood fills from position index using type tileType.
-	 * Only overwrites tiles of the type found at index. Treats other tiletypes as boundaries*/
-	public void FloodFill2(int index, TileEnum tileType) {
-		if (!this.IsValidIndex(index)) return;
-		if (tileType == this.grid[index]) return;
+	 * Only overwrites tiles of the type found at index. Treats other tiletypes as boundaries.
+	 * Returns number of tiles flood filled
+	 */
+	public int FloodFill2(int index, TileEnum tileType) {
+		if (!this.IsValidIndex(index)) return 0;
+		if (tileType == this.grid[index]) return 0;
 		
 		int[] dx = {1, 0, -1, 0};
 		int[] dy = {0, 1, 0, -1};
@@ -158,5 +151,6 @@ public class Grid : MonoBehaviour {
 				}
 			}
 		}
+		return todo.Count;
 	}
 }

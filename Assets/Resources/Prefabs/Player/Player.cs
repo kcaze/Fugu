@@ -1,20 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum TrailEnum {none, normal};
+public enum TrailEnum {none, normal, slow};
 
 public class Player : qObject {
-	public float maxSpeed;
+	public float maxNoneSpeed;
+	public float maxTrailSpeed;
 	public float acceleration;
 	public float friction;
 	public float turnSpeed;
 	public float lightIntensity;
-
+	public Color normalTrailColor;
+	public Color slowTrailColor;
+	
 	public TrailEnum trail { get; private set; }
+	private float maxSpeed;
 	private float velocityHorizontal, velocityVertical;
 	private float minSpeed = 1e-3f;
 	private LevelManager levelManager;
-	private Light light;
+	private new Light light;
+	private float rotationSpeedThreshold = 0.01f; // minimum speed necessary before rotations happens
 
 	public override void HandleInput(string type, float val) {
 		if (type == "AxisHorizontal") {
@@ -33,14 +38,20 @@ public class Player : qObject {
 				velocityVertical *= friction;
 			}
 		}
-		else if (type == "QButtonDown" && val != 0) {
+		else if (type == "ZButtonDown" && val != 0) {
 			if (trail == TrailEnum.normal) {
-				trail = TrailEnum.none;
-				light.intensity = 0;
+				SwitchTrail(TrailEnum.none);
 			}
-			else if (trail == TrailEnum.none) {
-				trail = TrailEnum.normal;				
-				light.intensity = lightIntensity;
+			else {
+				SwitchTrail(TrailEnum.normal);
+			}
+		}
+		else if (type == "XButtonDown" && val != 0) {
+			if (trail == TrailEnum.slow) {
+				SwitchTrail(TrailEnum.none);
+			}
+			else {
+				SwitchTrail(TrailEnum.slow);
 			}
 		}
 	}
@@ -48,13 +59,13 @@ public class Player : qObject {
 	private void Awake() {
 		velocityHorizontal = 0;
 		velocityVertical = 0;
-		trail = TrailEnum.none;
 		light = GetComponentInChildren<Light>();
-		light.intensity = 0;
+		SwitchTrail(TrailEnum.normal);
 	}
 	
 	private void Start() {
 		InputManager.instance.Subscribe(this);
+		//InvokeRepeating("RegenTrail",0, 0.25f); 
 	}
 	
 	private void Update() {
@@ -77,7 +88,8 @@ public class Player : qObject {
 		transform.position = position;
 
 		// rotation code
-		if (Mathf.Abs(velocityHorizontal) != 0 || velocityVertical != 0) {
+		if (Mathf.Abs(velocityHorizontal) > rotationSpeedThreshold || 
+		    Mathf.Abs(velocityVertical) > rotationSpeedThreshold) {
 			float angle = 90+Mathf.Rad2Deg*Mathf.Atan2(velocityHorizontal, velocityVertical);
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,angle,0), turnSpeed*Time.deltaTime);
 		}
@@ -85,11 +97,26 @@ public class Player : qObject {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "enemy") {
-			qEnemy enemy = other.gameObject.GetComponent<qEnemy> ();
-			if (enemy.isActive) {
-				// restart level
-				Application.LoadLevel(Application.loadedLevel);
-			}
+			// restart level
+			Application.LoadLevel(Application.loadedLevel);
 		}
-	}	
+	}
+
+	private void SwitchTrail(TrailEnum trailType) {
+		trail = trailType;
+		if (trailType == TrailEnum.none) {
+			light.intensity = 0;
+			maxSpeed = maxNoneSpeed;
+		}
+		else if (trailType == TrailEnum.normal) {
+			light.intensity = lightIntensity;
+			light.color = normalTrailColor;
+			maxSpeed = maxTrailSpeed;
+		}
+		else if (trailType == TrailEnum.slow) {
+			light.intensity = lightIntensity;
+			light.color = slowTrailColor;
+			maxSpeed = maxTrailSpeed;
+		}
+	}
 }

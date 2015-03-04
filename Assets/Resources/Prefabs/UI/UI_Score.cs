@@ -10,7 +10,6 @@ public class UI_Score : MonoBehaviour {
 	}
 
 	private void Update () {
-		score.text = "Hello World";
 		score.text = ScoreManager.instance.score.ToString();
 	}
 }

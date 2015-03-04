@@ -130,7 +130,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
@@ -161,11 +161,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b631386d603874f991b47f246d42d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
+  maxNoneSpeed: 28
+  maxTrailSpeed: 18
   acceleration: 300
   friction: .600000024
   turnSpeed: 999999996000
   lightIntensity: 4
+  normalTrailColor: {r: .486274481, g: .961363375, b: 1, a: 1}
+  slowTrailColor: {r: 1, g: .802228451, b: 0, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
