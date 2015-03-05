@@ -12,7 +12,7 @@ public class Chaser : qEnemy {
 		Vector3 direction = this.player.transform.position - this.transform.position;
 		direction.y = 0;
 		direction.Normalize();
-		direction *= speed*slow;
+		direction *= speed;
 		this.transform.Translate(direction*Time.deltaTime, Space.World);
 
 		// update rotation

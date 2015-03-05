@@ -1,25 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum TrailEnum {none, normal, slow};
+public enum TrailEnum {none, normal};
 
 public class Player : qObject {
-	public float maxNoneSpeed;
-	public float maxTrailSpeed;
+	public float maxSpeed;
 	public float acceleration;
 	public float friction;
 	public float turnSpeed;
-	public float lightIntensity;
-	public Color normalTrailColor;
-	public Color slowTrailColor;
 	
 	public TrailEnum trail { get; private set; }
 	[System.NonSerialized]
 	public float velocityHorizontal, velocityVertical;
-	private float maxSpeed;
 	private float minSpeed = 1e-3f;
 	private LevelManager levelManager;
-	private new Light light;
 	private float rotationSpeedThreshold = 0.01f; // minimum speed necessary before rotations happens
 
 	public override void HandleInput(string type, float val) {
@@ -39,22 +33,6 @@ public class Player : qObject {
 				velocityVertical *= friction;
 			}
 		}
-		else if (type == "ZButtonDown" && val != 0) {
-			if (trail == TrailEnum.normal) {
-				SwitchTrail(TrailEnum.none);
-			}
-			else {
-				SwitchTrail(TrailEnum.normal);
-			}
-		}
-		else if (type == "XButtonDown" && val != 0) {
-			if (trail == TrailEnum.slow) {
-				SwitchTrail(TrailEnum.none);
-			}
-			else {
-				SwitchTrail(TrailEnum.slow);
-			}
-		}
 	}
 
 	public void Reset() {
@@ -66,14 +44,11 @@ public class Player : qObject {
 	}
 
 	protected override void qAwake() {
-		light = GetComponentInChildren<Light>();
 		Reset();
-		SwitchTrail(TrailEnum.normal);
 	}
 	
 	protected override void qStart() {
 		InputManager.instance.Subscribe(this);
-		//InvokeRepeating("RegenTrail",0, 0.25f); 
 	}
 	
 	protected override void qUpdate() {
@@ -104,26 +79,8 @@ public class Player : qObject {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "enemy") {
+		if (other.gameObject.tag == "enemy" && other.gameObject.GetComponent<qObject>().isActive) {
 			LevelManager.instance.SendMessage("Die");
-		}
-	}
-
-	private void SwitchTrail(TrailEnum trailType) {
-		trail = trailType;
-		if (trailType == TrailEnum.none) {
-			light.intensity = 0;
-			maxSpeed = maxNoneSpeed;
-		}
-		else if (trailType == TrailEnum.normal) {
-			light.intensity = lightIntensity;
-			light.color = normalTrailColor;
-			maxSpeed = maxTrailSpeed;
-		}
-		else if (trailType == TrailEnum.slow) {
-			light.intensity = lightIntensity;
-			light.color = slowTrailColor;
-			maxSpeed = maxTrailSpeed;
 		}
 	}
 }

@@ -22,7 +22,7 @@ public class Bouncer : qEnemy {
 		transform.Rotate(new Vector3(0, 100f*Time.deltaTime, 0), Space.World);
 
 		// move
-		transform.Translate(slow*speed*direction*Time.deltaTime, Space.World);
+		transform.Translate(speed*direction*Time.deltaTime, Space.World);
 
 		// bounce
 		Vector3 position = transform.position;

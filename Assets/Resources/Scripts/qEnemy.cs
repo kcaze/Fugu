@@ -6,10 +6,8 @@ public class qEnemy : qObject {
 	public Color bubbleColor;
 	public float speed;
 	protected Player player;
-	protected float slow;
 
 	protected override void qAwake() {
-		slow = 1.0f;
 		player = (Player) FindObjectOfType(typeof(Player));
 		isActive = false;
 		StartCoroutine(Activate());
@@ -27,19 +25,5 @@ public class qEnemy : qObject {
 		Destroy(bubbles);
 		GetComponent<MeshRenderer>().enabled = true;
 		yield return null;
-	}
-
-	public void Trailed (TileEnum type) {
-		if (type == TileEnum.empty) {
-			// reset other effects
-			slow = 1.0f;
-		}
-		else if (type == TileEnum.slow) {
-			slow = 0.5f;
-		}
-		else if (type == TileEnum.normalCircled) {
-			ScoreManager.instance.score += score;
-			Destroy(gameObject);
-		}
 	}
 }

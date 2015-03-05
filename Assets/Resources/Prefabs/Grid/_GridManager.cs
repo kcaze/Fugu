@@ -22,22 +22,10 @@ public class _GridManager : MonoBehaviour {
 			Debug.LogError("Player outside level bounds!");
 			return;
 		}
-		if (player.trail == TrailEnum.normal) {
-			HandleNormalTrail(index);
-		}
-		else if (player.trail == TrailEnum.slow) {
-			HandleSlowTrail(index);
-		}
-
-		// let enemies know what tile they're on
-		/*for (int ii = 0; ii < LevelManager.instance.enemies.Count; ii++) {
-			qEnemy enemy = LevelManager.instance.enemies[ii];
-			if (enemy == null || !enemy.isActive) continue;
-			int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
-		}*/
+		HandleTrail(index);
 	}
 
-	private void HandleNormalTrail(int index) {
+	private void HandleTrail(int index) {
 		if (this.grid.grid[index] == TileEnum.normal || this.grid.grid[index] == TileEnum.normalCircled) return;
 		this.grid.grid[index] = TileEnum.normal;
 		
@@ -68,11 +56,6 @@ public class _GridManager : MonoBehaviour {
 				}
 			}
 		}
-	}
-
-	private void HandleSlowTrail(int index) {
-		if (this.grid.grid[index] == TileEnum.slow) return;
-		this.grid.grid[index] = TileEnum.slow;
 	}
 }
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum TileEnum {empty, normal, normalCircled, slow};
+public enum TileEnum {empty, normal, normalCircled};
 
 [System.Serializable]
 public class Tile {
