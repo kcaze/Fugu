@@ -61,7 +61,7 @@ public class _GridManager : MonoBehaviour {
 			GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");	
 			for (int ii = 0; ii < enemies.Length; ii++) {
 				GameObject enemy = enemies[ii];
-				if (enemy == null) continue;
+				if (enemy == null || !enemy.GetComponent<qObject>().isActive) continue;
 				int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
 				if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
 					Destroy(enemy);

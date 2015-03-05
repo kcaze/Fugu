@@ -39,8 +39,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9892042479a4b54a8ac767c00faa0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: 
   levelWidth: 0
   levelHeight: 0
+  lives: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

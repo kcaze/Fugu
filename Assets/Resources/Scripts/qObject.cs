@@ -2,15 +2,12 @@
 using System.Collections;
 
 public class qObject : MonoBehaviour {
-	// public members
+	[System.NonSerialized]
+	public bool isActive;
 
-	// public methods
 	public virtual void HandleInput(string type, float val) {
 	}
 
-	// private members
-
-	// private methods
 	private void Start() {
 	}
 	

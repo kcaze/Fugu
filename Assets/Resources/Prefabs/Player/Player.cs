@@ -57,11 +57,15 @@ public class Player : qObject {
 		}
 	}
 
-	private void Awake() {
+	public void Awake() {
 		velocityHorizontal = 0;
 		velocityVertical = 0;
 		light = GetComponentInChildren<Light>();
 		SwitchTrail(TrailEnum.normal);
+
+		transform.position = new Vector3(LevelManager.instance.levelWidth/2, 
+		                                 transform.position.y, 
+		                                 LevelManager.instance.levelHeight/2);
 	}
 	
 	private void Start() {
@@ -98,8 +102,7 @@ public class Player : qObject {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "enemy") {
-			// restart level
-			Application.LoadLevel(Application.loadedLevel);
+			LevelManager.instance.SendMessage("Die");
 		}
 	}
 

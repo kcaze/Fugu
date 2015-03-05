@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2343650}
   - 114: {fileID: 11447674}
   - 114: {fileID: 11423822}
-  - 114: {fileID: 11475152}
+  - 114: {fileID: 11406432}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -60,6 +60,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181180}
   m_Mesh: {fileID: 0}
+--- !u!114 &11406432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3810952c3cfbc974ba18856559597fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
 --- !u!114 &11423822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,17 +118,6 @@ MonoBehaviour:
   gridHeight: 0
   tileWidth: 0
   tileHeight: 0
---- !u!114 &11475152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 181180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3810952c3cfbc974ba18856559597fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

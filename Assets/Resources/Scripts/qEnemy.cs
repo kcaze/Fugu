@@ -5,8 +5,6 @@ public class qEnemy : qObject {
 	public int score;
 	public Color bubbleColor;
 	public float speed;
-	[System.NonSerialized]
-	public bool isActive;
 	protected Player player;
 	protected float slow;
 
@@ -23,13 +21,11 @@ public class qEnemy : qObject {
 		bubbles.transform.position = transform.position;
 		bubbleParticles.startColor = bubbleColor;
 		GetComponent<MeshRenderer>().enabled = false;
-		gameObject.tag = "inactive";
 		yield return new WaitForSeconds(1.0f);
 
 		isActive = true;
 		Destroy(bubbles);
 		GetComponent<MeshRenderer>().enabled = true;
-		gameObject.tag = "enemy";
 		yield return null;
 	}
 

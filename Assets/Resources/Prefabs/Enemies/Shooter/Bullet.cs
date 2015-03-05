@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : qObject {
 	public float speed;
 	[System.NonSerialized]
 	public Vector3 direction;
+
+	void Awake () {
+		isActive = true;
+	}
 
 	void Update () {
 		transform.position += direction*speed*Time.deltaTime;
