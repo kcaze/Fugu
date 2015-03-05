@@ -11,9 +11,9 @@ GameObject:
   - 114: {fileID: 11473010}
   - 33: {fileID: 3376644}
   - 23: {fileID: 2343650}
-  - 114: {fileID: 11475152}
   - 114: {fileID: 11447674}
   - 114: {fileID: 11423822}
+  - 114: {fileID: 11475152}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -108,7 +108,7 @@ MonoBehaviour:
   tileHeight: 0
 --- !u!114 &11475152
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181180}

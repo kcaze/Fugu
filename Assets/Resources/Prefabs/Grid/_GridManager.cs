@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GridManager : MonoBehaviour {
-	private Grid grid;
+public class _GridManager : MonoBehaviour {
+	public Grid grid;
 	private Player player;
 	
-	private void Start () {
+	private void Awake () {
 		this.player = (Player) FindObjectOfType(typeof(Player));
 		this.grid = gameObject.GetComponent<Grid>();
 	}
@@ -74,4 +74,7 @@ public class GridManager : MonoBehaviour {
 		if (this.grid.grid[index] == TileEnum.slow) return;
 		this.grid.grid[index] = TileEnum.slow;
 	}
+}
+
+public class GridManager : qSingleton<_GridManager> {
 }
