@@ -20,6 +20,7 @@ public class _InputManager : MonoBehaviour {
 		for (int ii = 0; ii < listeners.Count; ii++) {
 			listeners[ii].HandleInput("AxisHorizontal", Input.GetAxisRaw("Horizontal"));
 			listeners[ii].HandleInput("AxisVertical", Input.GetAxisRaw("Vertical"));
+			listeners[ii].HandleInput("Pause", System.Convert.ToSingle(Input.GetButtonDown("Pause")));
 		}
 	}
 }

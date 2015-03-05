@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class _LevelManager : MonoBehaviour {
+public class _LevelManager : qObject {
 	public string levelName;
 	public float levelWidth;
 	public float levelHeight;
@@ -17,7 +17,21 @@ public class _LevelManager : MonoBehaviour {
 	private float previousWaveTime;
 	private float nextWaveTime;
 
-	private void Awake() {
+	public override void HandleInput(string type, float val) {
+		if (type == "Pause") {
+			if (val != 0) {
+				if (isActive) {
+					Time.timeScale = 0;
+					isActive = false;
+				} else {
+					Time.timeScale = 1;
+					isActive = true;
+				}
+			}
+		}
+	}
+
+	protected override void qAwake() {
 		level = (Level) gameObject.AddComponent(levelName);
 		level.Setup();
 		time = 0;
@@ -27,7 +41,11 @@ public class _LevelManager : MonoBehaviour {
 		player.transform.position = new Vector3(levelWidth/2, player.transform.position.y, levelHeight/2);
 	}
 
-	private void Update() {
+	protected override void qStart() {
+		InputManager.instance.Subscribe(this);
+	}
+
+	protected override void qUpdate() {
 		time += Time.deltaTime;
 
 		GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
