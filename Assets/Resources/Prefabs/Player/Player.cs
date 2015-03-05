@@ -57,23 +57,26 @@ public class Player : qObject {
 		}
 	}
 
-	public void Awake() {
+	public void Reset() {
 		velocityHorizontal = 0;
 		velocityVertical = 0;
-		light = GetComponentInChildren<Light>();
-		SwitchTrail(TrailEnum.normal);
-
 		transform.position = new Vector3(LevelManager.instance.levelWidth/2, 
 		                                 transform.position.y, 
 		                                 LevelManager.instance.levelHeight/2);
 	}
+
+	protected override void qAwake() {
+		light = GetComponentInChildren<Light>();
+		Reset();
+		SwitchTrail(TrailEnum.normal);
+	}
 	
-	private void Start() {
+	protected override void qStart() {
 		InputManager.instance.Subscribe(this);
 		//InvokeRepeating("RegenTrail",0, 0.25f); 
 	}
 	
-	private void Update() {
+	protected override void qUpdate() {
 		// movement code
 		float magnitude = Mathf.Sqrt(Mathf.Pow(velocityHorizontal,2) + Mathf.Pow(velocityVertical,2));
 		if (magnitude > maxSpeed) {

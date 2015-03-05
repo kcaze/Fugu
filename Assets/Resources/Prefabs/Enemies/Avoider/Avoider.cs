@@ -5,15 +5,13 @@ public class Avoider : qEnemy {
 	public float avoidRadius;
 	private float velocityHorizontal, velocityVertical;
 
-	protected override void Awake () {
-		base.Awake();
+	protected override void qAwake () {
+		base.qAwake();
 		velocityHorizontal = 0;
 		velocityVertical = 0;
 	}
 	
-	void Update () {
-		if (!isActive) return;
-
+	protected override void qUpdate () {
 		Vector3 playerDir = player.transform.position-transform.position;
 		Vector3 direction = new Vector3(0,0,0);
 

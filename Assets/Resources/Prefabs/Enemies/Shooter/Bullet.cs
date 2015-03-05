@@ -6,11 +6,7 @@ public class Bullet : qObject {
 	[System.NonSerialized]
 	public Vector3 direction;
 
-	void Awake () {
-		isActive = true;
-	}
-
-	void Update () {
+	protected override void qUpdate () {
 		transform.position += direction*speed*Time.deltaTime;
 		if (transform.position.x < 0 || transform.position.x > LevelManager.instance.levelWidth){
 			Destroy(gameObject);

@@ -48,7 +48,7 @@ public class _LevelManager : MonoBehaviour {
 
 	public void Die() {
 		lives--;
-		player.Awake();
+		player.Reset();
 		nextWaveTime = time+level.waveTimes[waveNumber];
 	}
 }

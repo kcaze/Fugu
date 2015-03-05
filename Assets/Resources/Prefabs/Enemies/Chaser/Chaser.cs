@@ -2,14 +2,12 @@
 using System.Collections;
 
 public class Chaser : qEnemy {
-	protected override void Awake () {
-		base.Awake();
+	protected override void qAwake () {
+		base.qAwake();
 		this.player = (Player) FindObjectOfType(typeof(Player));
 	}
 
-	private void Update () {
-		if (!isActive) return;
-
+	protected override void qUpdate () {
 		// update position
 		Vector3 direction = this.player.transform.position - this.transform.position;
 		direction.y = 0;

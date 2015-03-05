@@ -4,8 +4,8 @@ using System.Collections;
 public class Bouncer : qEnemy {
 	private Vector3 direction;
 
-	protected override void Awake () {
-		base.Awake();
+	protected override void qAwake () {
+		base.qAwake();
 		float angle = Mathf.Deg2Rad*(Mathf.FloorToInt(Random.Range(0, 4))*90 + 45);
 		direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
 	}
@@ -17,9 +17,7 @@ public class Bouncer : qEnemy {
 		direction.z *= -1;
 	}
 
-	private void Update () {
-		if (!isActive) return;
-
+	protected override void qUpdate () {
 		//TODO: temporary code for animation
 		transform.Rotate(new Vector3(0, 100f*Time.deltaTime, 0), Space.World);
 

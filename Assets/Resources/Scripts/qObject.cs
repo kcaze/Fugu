@@ -8,10 +8,27 @@ public class qObject : MonoBehaviour {
 	public virtual void HandleInput(string type, float val) {
 	}
 
-	private void Start() {
-	}
-	
-	private void Update() {	
+	protected virtual void qAwake() {
 	}
 
+	protected virtual void qStart() {
+	}
+
+	protected virtual void qUpdate() {
+	}
+
+	private void Awake() {
+		isActive = true;
+		qAwake();
+	}
+
+	private void Start() {
+		qStart();
+	}
+
+	private void Update() {
+		if (isActive) {
+			qUpdate();
+		}
+	}
 }

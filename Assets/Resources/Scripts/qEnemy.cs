@@ -8,7 +8,7 @@ public class qEnemy : qObject {
 	protected Player player;
 	protected float slow;
 
-	protected virtual void Awake() {
+	protected override void qAwake() {
 		slow = 1.0f;
 		player = (Player) FindObjectOfType(typeof(Player));
 		isActive = false;
