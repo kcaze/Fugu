@@ -77,9 +77,8 @@ public class _LevelManager : qObject {
 		}
 	}
 
-	public void Die() {
+	protected override void qDie() {
 		lives--;
-		player.Reset();
 		nextWaveTime = time+level.waveTimes[waveNumber];
 	}
 }

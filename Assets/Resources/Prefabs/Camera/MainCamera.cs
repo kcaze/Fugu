@@ -13,7 +13,7 @@ public class MainCamera : MonoBehaviour {
 		this.transform.position = position;
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		Vector3 playerPosition = this.player.transform.position;
 		Vector3 newPosition = new Vector3(0,transform.position.y,0);
 		if (playerPosition.x > transform.position.x + followWidth) {

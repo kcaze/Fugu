@@ -8,6 +8,7 @@ public class Player : qObject {
 	public float acceleration;
 	public float friction;
 	public float turnSpeed;
+	public float shieldTime;
 	
 	public TrailEnum trail { get; private set; }
 	[System.NonSerialized]
@@ -15,6 +16,8 @@ public class Player : qObject {
 	private float minSpeed = 1e-3f;
 	private LevelManager levelManager;
 	private float rotationSpeedThreshold = 0.01f; // minimum speed necessary before rotations happens
+	private bool isInvulnerable;
+	private Shield shield;
 
 	public override void HandleInput(string type, float val) {
 		if (type == "AxisHorizontal") {
@@ -35,16 +38,9 @@ public class Player : qObject {
 		}
 	}
 
-	public void Reset() {
-		velocityHorizontal = 0;
-		velocityVertical = 0;
-		transform.position = new Vector3(LevelManager.instance.levelWidth/2, 
-		                                 transform.position.y, 
-		                                 LevelManager.instance.levelHeight/2);
-	}
-
 	protected override void qAwake() {
-		Reset();
+		shield = GetComponentInChildren<Shield>();
+		qDie();
 	}
 	
 	protected override void qStart() {
@@ -79,8 +75,27 @@ public class Player : qObject {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "enemy" && other.gameObject.GetComponent<qObject>().isActive) {
-			LevelManager.instance.SendMessage("Die");
+		if (other.gameObject.tag == "enemy" && 
+		    other.gameObject.GetComponent<qObject>().isActive &&
+		    !isInvulnerable) {
+			qDie();
+			LevelManager.instance.SendMessage("qDie");
 		}
+	}
+
+	protected override void qDie() {
+		velocityHorizontal = 0;
+		velocityVertical = 0;
+		isInvulnerable = true;
+		StartCoroutine(becomeVulnerable());
+		shield.Activate(shieldTime);
+		transform.position = new Vector3(LevelManager.instance.levelWidth/2, 
+		                                 transform.position.y, 
+		                                 LevelManager.instance.levelHeight/2);
+	}
+
+	private IEnumerator becomeVulnerable() {
+		yield return new WaitForSeconds(shieldTime);
+		isInvulnerable = false;
 	}
 }

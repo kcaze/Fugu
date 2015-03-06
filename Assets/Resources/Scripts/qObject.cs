@@ -17,6 +17,10 @@ public class qObject : MonoBehaviour {
 	protected virtual void qUpdate() {
 	}
 
+	protected virtual void qDie() {
+		Destroy(gameObject);
+	}
+
 	private void Awake() {
 		isActive = true;
 		qAwake();
