@@ -2,14 +2,11 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-//TODO: Proper polygon detection (final intersection and color), multi path detection, 
-//Class that the motion/player controller calls, handles changes in player input
-
 class Path {
     int size;
     public Node head;
     private Node current;
-    public List<Segment> intersections; //Intersection with other paths, used in DFS
+    //public List<Segment> intersections; //Intersection with other paths, used in DFS
 
     public Path(Segment segment) {
         size = 0;
@@ -19,22 +16,26 @@ class Path {
         current.height = 1;
         segment.parent = current;
     }
+
     //if intersection found returns index; if not then the segment is added to tree and -1 is returned.
     public int insert(Segment segment){
         segment.segment_index = size;
         size++;
         //check for intersection
-        if (current.right == null) current.right = segment;
+        if (current.right == null){
+			current.right = segment;
+		}
         else {
-			while (current.right !=null && current.left.height != current.right.height) {
-			//stop when either node is balanced or reached a leaf 
-            current = current.right;
+			while (current.right != null && current.left.height != current.right.height) {
+				//stop when either node is balanced or reached a leaf 
+	            current = current.right;
         	}
 		}
         addToTree(segment);
         int intersect =checkIntersection(segment, head);
         return intersect;
     }
+
     //inserts a new node above current and adds segment as the current node's sibling
     private void addToTree(Segment segment) {
         Node add = new Node();
@@ -95,7 +96,7 @@ class Segment : Node  {
     public Segment() { }
     public Segment(float x1, float y1, float x2, float y2, int color) {
         left = null; right = null; parent = null; height = 0;
-        x = (x1 < x2) ? x1 : x2; ;
+        x = (x1 < x2) ? x1 : x2;
         y = (y1 < y2) ? y1 : y2;
         X = (x == x1) ? x2 : x1;
         Y = (y == y1) ? y2 : y1;
@@ -105,17 +106,17 @@ class Segment : Node  {
         this.y2 = y2;
         this.color = color;
     }
+
     //returns false for colinear lines too! yay!
-    public int intersects_segment(Segment other) {
-        //if (Mathf.Pow((x1 - x2) * (other.x1 - other.x2) + (y1 - y2) * (other.y1 - other.y2),2) > 0.95 * (Mathf.Pow((x1 - x2),2)  + Mathf.Pow((y1 - y2),2))
-           //                                                                                                                             * (Mathf.Pow((other.x1 - other.x2),2)+ Mathf.Pow(other.y1 - other.y2,2))) return -1;
-        if (intersect(x1, y1, x2, y2, other.x1, other.y1, other.x2, other.y2)) {
+	public int intersects_segment(Segment other) {
+		if (intersect(x1, y1, x2, y2, other.x1, other.y1, other.x2, other.y2)) {
 			return other.segment_index;
 		}
 		else {
-       		return -1;
-		}
-    }
+			return -1;
+		}	
+	}
+
     private bool intersect(float a1, float a2, float b1, float b2, float c1, float c2,float d1, float d2) {
         return counterclockwise(a1,a2,c1,c2,d1,d2) != counterclockwise(b1,b2,c1,c2,d1,d2) 
             && counterclockwise(a1,a2,b1,b2,c1,c2) != counterclockwise(a1,a2,b1,b2,d1,d2);
@@ -139,24 +140,13 @@ class Segment : Node  {
 	   
 	    x2 = intersect_x;
 	    y2 = intersect_y;
-	    Debug.Log("INTERSECT:  x:" + other.x1 + "->" + intersect_x + "y: "+other.y1 + "->" + intersect_y);
 	    other.x1 = x2;
 	    other.y1 = y2;
-     	//Debug.Log(other.parent.ToString());
-    	//Debug.Log(path.ToString());
         path.updateFrom(other);
         path.updateFrom(this);
-        /*float hackx = 0.25f*(x1+x2+other.x1+other.x2);
-        float hacky = 0.25f*(y1+y2+other.y1+other.y2);
-        x2 = hackx;
-        other.x1 = hackx;
-        y2 = hacky;
-        other.y1= hacky;*/
-        /*other.x1 = x2;
-        other.y1 = y2;*/
     }
 
-};
+}
 
 //class for all line segments and parents in aabb tree
 class Node {
@@ -186,25 +176,20 @@ class Node {
 	        Y= Mathf.Max(Y, right.Y);
         }
     }
-};
-
-class DisjointCurve {
-    public int start, end;
-    public Node head;
-};
+}
 
 class Polygon {
     uint cycleSize;//number of edges of the polygon
     public int start;
     public Node head;
-    bool red;
-    bool yellow;
-    bool blue;
+    //bool red;
+    //bool yellow;
+    //bool blue;
 
     public Polygon() {
-        red = true;
+        /*red = true;
         yellow = false;
-        blue = false;
+        blue = false;*/
     }
     public bool isInPolygon(float x, float y) {
         //TODO! Game board dim
@@ -219,10 +204,4 @@ class Polygon {
         return nIntersection(segment,check.left)+nIntersection(segment,check.right); 
 
     }
-};
-
-struct Vertex {
-    double x,y;//point
-   // Vertex    next;//used in Polygon
-};
-
+}

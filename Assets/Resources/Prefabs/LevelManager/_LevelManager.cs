@@ -16,22 +16,35 @@ public class _LevelManager : qObject {
 	private float time;
 	private float previousWaveTime;
 	private float nextWaveTime;
+	private UI ui;
+	
+	public void Pause() {
+		Time.timeScale = 0;
+		isActive = false;
+		ui.Pause();
+	}
+
+	public void Unpause() {
+		Time.timeScale = 1;
+		isActive = true;
+		ui.Unpause();
+	}
 
 	public override void HandleInput(string type, float val) {
 		if (type == "Pause") {
 			if (val != 0) {
 				if (isActive) {
-					Time.timeScale = 0;
-					isActive = false;
+					Debug.Log("Hello");
+					Pause();
 				} else {
-					Time.timeScale = 1;
-					isActive = true;
+					Unpause();
 				}
 			}
 		}
 	}
 
 	protected override void qAwake() {
+		ui = (UI) FindObjectOfType(typeof(UI));
 		level = (Level) gameObject.AddComponent(levelName);
 		level.Setup();
 		time = 0;

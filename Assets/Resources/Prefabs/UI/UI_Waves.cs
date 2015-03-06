@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class UI_WaveInfo : MonoBehaviour {
+public class UI_Waves : MonoBehaviour {
 	private Text waveInfo;
 	
 	private void Awake() {

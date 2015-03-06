@@ -8,10 +8,10 @@ public class PathManager : MonoBehaviour {
 	[System.NonSerialized]
 	public int max_segments; //Set max for path length--clears when run out
 	public float board_dim;//gamescene dimension for ray intersecting with polygon
-	private int current_path_index;//Indicates which path we're on
+	//private int current_path_index;//Indicates which path we're on
 	private int current_color;//Indicates color type
 	private int n_segments;//Number of segments in total
-	List<Path> Paths;//All Paths drawn up to now
+	//List<Path> Paths;//All Paths drawn up to now
 	Path currentPath;
 	private Polygon closedRegion;
 	private Player player;
@@ -32,8 +32,8 @@ public class PathManager : MonoBehaviour {
 		lineRenderer.SetVertexCount(vertexcount);
 		InvokeRepeating("PathDraw", 0.0f, seconds_per_sample);
 		player = (Player) FindObjectOfType(typeof(Player));
-		Paths = new List<Path> ();
-		current_path_index = 0;
+		//Paths = new List<Path> ();
+		//current_path_index = 0;
 		current_color = 0;
 		n_segments = 0;
 		currentPath = null;
