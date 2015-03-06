@@ -74,8 +74,14 @@ public class _LevelManager : qObject {
 				nextWaveTime += level.waveTimes[waveNumber];
 				for (int ii = 0; ii < level.waves[waveNumber].Count; ii++) {
 					EnemyInfo enemyInfo = level.waves[waveNumber][ii];
-					qEnemy enemy = (qEnemy) Resources.Load("Prefabs/Enemies/"+enemyInfo.name+"/"+enemyInfo.name, typeof(qEnemy));
+					Object enemy = Resources.Load(enemyInfo.path, typeof(GameObject));
 					Instantiate(enemy, enemyInfo.position, Quaternion.identity);
+				}
+				for (int ii = 0; ii < level.messages[waveNumber].Count; ii++) {
+					MessageInfo msgInfo = level.messages[waveNumber][ii];
+					Object msgObj = Resources.Load("Prefabs/UI/Message/Message", typeof(GameObject));
+					Message msg = (Instantiate(msgObj) as GameObject).GetComponent<Message>();
+					msg.Initialize(msgInfo.message, msgInfo.duration);
 				}
 			}
 		}

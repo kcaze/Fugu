@@ -29,7 +29,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .294387996, g: .440899104, b: .727941155, a: 1}
+        second: {r: .801470578, g: .705554187, b: .453773797, a: 1}
       data:
         first:
           name: _SpecColor

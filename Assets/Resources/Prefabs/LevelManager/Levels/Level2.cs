@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Level1 : Level {
+public class Level2 : Level {
 	private int lw = 20;
 	private int lh = 18;
 
