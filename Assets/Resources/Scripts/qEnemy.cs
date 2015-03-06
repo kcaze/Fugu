@@ -19,7 +19,7 @@ public class qEnemy : qObject {
 		bubbles.transform.position = transform.position;
 		bubbleParticles.startColor = bubbleColor;
 		GetComponent<MeshRenderer>().enabled = false;
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(2.0f);
 
 		isActive = true;
 		Destroy(bubbles);

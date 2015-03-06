@@ -34,7 +34,6 @@ public class _LevelManager : qObject {
 		if (type == "Pause") {
 			if (val != 0) {
 				if (isActive) {
-					Debug.Log("Hello");
 					Pause();
 				} else {
 					Unpause();
@@ -67,14 +66,23 @@ public class _LevelManager : qObject {
 		// spawn next wave
 		if (currentWaveCleared || time >= nextWaveTime) {
 			waveNumber++;
-			time = nextWaveTime;
-			nextWaveTime += level.waveTimes[waveNumber];
-			for (int ii = 0; ii < level.waves[waveNumber].Count; ii++) {
-				EnemyInfo enemyInfo = level.waves[waveNumber][ii];
-				qEnemy enemy = (qEnemy) Resources.Load("Prefabs/Enemies/"+enemyInfo.name+"/"+enemyInfo.name, typeof(qEnemy));
-				Instantiate(enemy, enemyInfo.position, Quaternion.identity);
+			if (waveNumber >= level.waves.Count) {
+				Victory();
+			}
+			else {
+				time = nextWaveTime;
+				nextWaveTime += level.waveTimes[waveNumber];
+				for (int ii = 0; ii < level.waves[waveNumber].Count; ii++) {
+					EnemyInfo enemyInfo = level.waves[waveNumber][ii];
+					qEnemy enemy = (qEnemy) Resources.Load("Prefabs/Enemies/"+enemyInfo.name+"/"+enemyInfo.name, typeof(qEnemy));
+					Instantiate(enemy, enemyInfo.position, Quaternion.identity);
+				}
 			}
 		}
+	}
+
+	private void Victory() {
+		Application.LoadLevel("Victory");
 	}
 
 	protected override void qDie() {

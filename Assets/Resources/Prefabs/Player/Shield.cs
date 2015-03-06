@@ -17,7 +17,7 @@ public class Shield : MonoBehaviour {
 
 	private IEnumerator ShieldAnimate(float time) {
 		GetComponent<MeshRenderer>().enabled = true;
-		yield return new WaitForSeconds(time);
+		yield return new WaitForSeconds(time-2.2f); // 2.2 is approximately the flicker time
 		float t = 0.3f;
 		for (int ii = 0; ii < 10; ii++) {
 			GetComponent<MeshRenderer>().enabled = false;

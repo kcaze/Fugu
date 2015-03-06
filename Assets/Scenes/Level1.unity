@@ -134,10 +134,6 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -1.50519099e-07
       objectReference: {fileID: 0}
-    - target: {fileID: 11490440, guid: e091e018d17a4bd48bc8b4a3eb8f8b1b, type: 2}
-      propertyPath: shieldTime
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2390440, guid: e091e018d17a4bd48bc8b4a3eb8f8b1b, type: 2}
       propertyPath: m_Enabled
       value: 0
@@ -1728,7 +1724,7 @@ MonoBehaviour:
   acceleration: 120
   friction: .699999988
   turnSpeed: 999999996000
-  shieldTime: 3
+  shieldTime: 5
 --- !u!23 &1599492203
 Renderer:
   m_ObjectHideFlags: 0

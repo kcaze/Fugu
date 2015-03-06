@@ -235,7 +235,7 @@ MonoBehaviour:
   acceleration: 120
   friction: .699999988
   turnSpeed: 999999996000
-  shieldTime: 3
+  shieldTime: 5
 --- !u!135 &13590440
 SphereCollider:
   m_ObjectHideFlags: 1
