@@ -18,6 +18,17 @@ public class Chaser : qEnemy {
 		direction.Normalize();
 		velocity += direction*acceleration*Time.deltaTime;
 
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+		for (int ii = 0; ii < enemies.Length; ii++) {
+			if (enemies[ii].GetComponent<Chaser>() == null) continue;
+			if (!enemies[ii].GetComponent<qEnemy>().isActive) continue;
+			direction = enemies[ii].transform.position - this.transform.position;
+			if (direction.magnitude > 1) continue;
+			direction.y = 0;
+			direction.Normalize();
+			velocity -= direction*acceleration*Time.deltaTime;
+		}
+
 		if (velocity.magnitude > speed) {
 			velocity *= speed/velocity.magnitude;
 		}

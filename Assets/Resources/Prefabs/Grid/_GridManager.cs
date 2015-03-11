@@ -72,7 +72,6 @@ public class _GridManager : qObject {
 			}
 			StartCoroutine(FillEmpty());
 			ScoreManager.instance.tileFraction = tileCount / grid.gridSize;
-			int numKilled = 0;
 			for (int ii = 0; ii < enemies.Length; ii++) {
 				GameObject enemy = enemies[ii];
 				if (!enemy.GetComponent<qObject>().isActive) continue;
@@ -88,14 +87,12 @@ public class _GridManager : qObject {
 						int enemyIndex = this.grid.WorldToGrid(new Vector3(jj, 0, kk));
 						if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
 							enemy.SendMessage("qDie");
-							numKilled++;
 							goto outside;
 						}
 					}
 				}
 				outside: continue;
 			}
-			ScoreManager.instance.combo += Mathf.Max(numKilled-1, 0);
 			ScoreManager.instance.tileFraction = 1; // default is 1, so bombs will have no tile multiplier
 			this.line.SetVertexCount(0);
 			npoints = 0;

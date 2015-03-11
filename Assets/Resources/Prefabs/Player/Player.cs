@@ -114,10 +114,12 @@ public class Player : qObject {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "enemy" && 
-		    other.gameObject.GetComponent<qObject>().isActive &&
-		    !isInvulnerable) {
+		if (other.gameObject.tag == "enemy") { 
+			if (!other.gameObject.GetComponent<qObject>().isActive || isInvulnerable) return;
 			LevelManager.instance.SendMessage("qDie");
+		} else if (other.gameObject.tag == "coin") {
+			ScoreManager.instance.combo += 1;
+			other.gameObject.SendMessage("qDie");
 		}
 	}
 

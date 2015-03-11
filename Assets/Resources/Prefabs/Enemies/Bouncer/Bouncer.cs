@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bouncer : qEnemy {
 	private Vector3 direction;
+	private Vector3 previousPosition;
 
 	protected override void qAwake () {
 		base.qAwake();
@@ -13,6 +14,7 @@ public class Bouncer : qEnemy {
 	private void ReflectHorizontal() {
 		direction.x *= -1;
 	}
+
 	private void ReflectVertical() {
 		direction.z *= -1;
 	}
@@ -21,6 +23,7 @@ public class Bouncer : qEnemy {
 		//TODO: temporary code for animation
 		transform.Rotate(new Vector3(0, 100f*Time.deltaTime, 0), Space.World);
 
+		previousPosition = transform.position;
 		// move
 		transform.Translate(speed*direction*Time.deltaTime, Space.World);
 
@@ -38,5 +41,17 @@ public class Bouncer : qEnemy {
 		position.z = Mathf.Clamp(position.z, 0.001f, LevelManager.instance.levelHeight - 0.001f);
 		transform.position = position;	
 
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (!other.GetComponent<Bouncer>()) return;
+		transform.position = previousPosition;
+		Vector3 otherDirection = other.GetComponent<Bouncer>().direction;
+		if (direction.x*otherDirection.x < 0) {
+			Invoke("ReflectHorizontal", 0.01f); // need delay, otw the other bouncer won't reflect
+		}
+		if (direction.z*otherDirection.z < 0) {
+			Invoke("ReflectVertical", 0.01f);
+		}
 	}
 }
