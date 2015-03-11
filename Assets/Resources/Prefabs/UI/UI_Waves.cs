@@ -1,17 +1,23 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class UI_Waves : MonoBehaviour {
-	private Text waveInfo;
+	private int total;
+    private int prevwave;
+    private UICanvas canvas;
 	
 	private void Awake() {
-		waveInfo = GetComponent<Text>();
+		canvas= GetComponent<UICanvas>();
+        prevwave = 0;
 	}
 	
 	private void Update () {
-		int waveNumber = LevelManager.instance.waveNumber+1; // level manager's wave number is 0-indexed
-		int totalWaves = LevelManager.instance.level.waves.Count;
-		waveInfo.text = "Wave " + waveNumber + " of " + totalWaves;
+		total= LevelManager.instance.level.waves.Count;
+		int currentwave = LevelManager.instance.waveNumber+1; // level manager's wave number is 0-indexed
+        Debug.Log("" + total + "->" + currentwave);
+        if (prevwave == currentwave) return;
+        canvas.levelprogress = ((float)currentwave) / (float)total;
+        prevwave = currentwave;
 	}
 }
