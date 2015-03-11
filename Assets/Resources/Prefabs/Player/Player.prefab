@@ -256,6 +256,7 @@ MonoBehaviour:
   friction: .699999988
   turnSpeed: 999999996000
   shieldTime: 5
+  bombs: 3
 --- !u!114 &11443664
 MonoBehaviour:
   m_ObjectHideFlags: 1

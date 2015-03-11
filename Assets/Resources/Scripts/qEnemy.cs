@@ -5,6 +5,7 @@ public class qEnemy : qObject {
 	public int score;
 	public Color bubbleColor;
 	public float speed;
+	[System.NonSerialized]
 	protected Player player;
 
 	protected override void qAwake() {

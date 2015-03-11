@@ -76,30 +76,30 @@ public class _GridManager : qObject {
 			for (int ii = 0; ii < enemies.Length; ii++) {
 				GameObject enemy = enemies[ii];
 				if (!enemy.GetComponent<qObject>().isActive) continue;
-				int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
-				if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
-					enemy.SendMessage("qDie");
-					numKilled++;
+				Bounds enemyBounds = enemy.collider.bounds;
+				Tuple<int,int> bl, tr;
+				bl = grid.Coord(grid.WorldToGrid(enemyBounds.min));
+				tr = grid.Coord(grid.WorldToGrid(enemyBounds.max));
+				if (bl == null && tr == null) continue; // enemy lies outside grid
+				if (bl == null) bl = tr; // if enemy partially lies outside of grid
+				if (tr == null) tr = bl;
+				for (int jj = bl.first; jj <= tr.first; jj++) {
+					for (int kk = bl.second; kk <= tr.second; kk++) {
+						int enemyIndex = this.grid.WorldToGrid(new Vector3(jj, 0, kk));
+						if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
+							enemy.SendMessage("qDie");
+							numKilled++;
+							goto outside;
+						}
+					}
 				}
+				outside: continue;
 			}
 			ScoreManager.instance.combo += Mathf.Max(numKilled-1, 0);
-			ScoreManager.instance.tileFraction = 0;
+			ScoreManager.instance.tileFraction = 1; // default is 1, so bombs will have no tile multiplier
 			this.line.SetVertexCount(0);
 			npoints = 0;
 		}
-
-		// TODO: this is buggy
-		/*for (int ii = 0; ii < enemies.Length; ii++) {
-			GameObject enemy = enemies[ii];
-			if (enemy == null) continue;
-			int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
-			//Debug.Log(enemyIndex);
-			if (this.grid.grid[enemyIndex] == TileEnum.normal && !player.isInvulnerable) {
-				player.SendMessage("qDie");
-				LevelManager.instance.SendMessage("qDie");
-				break;
-			}
-		}*/
 	}
 	
 	private void ClearNormal() {

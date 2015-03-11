@@ -10,6 +10,7 @@ public class Player : qObject {
 	public float friction;
 	public float turnSpeed;
 	public float shieldTime;
+	public int bombs;
 
 	private float maxSpeed;
 	public TrailEnum trail { get; private set; }
@@ -56,10 +57,20 @@ public class Player : qObject {
 				maxSpeed = maxNoTrailSpeed;
 			}
 		}
-		/*else if (type == "TrailClear") {
+		else if (type == "TrailClear") {
 			if (val == 0) return;
 			GridManager.instance.SendMessage("ClearNormal");
-		}*/
+		}
+		else if (type == "Bomb") {
+			if (val == 0 || bombs <= 0) return;
+			bombs--;
+			GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+			for (int ii = 0; ii < enemies.Length; ii++) {
+				if (enemies[ii].GetComponent<qEnemy>().isActive) {
+					enemies[ii].SendMessage("qDie");
+				}
+			}
+		}
 	}
 
 	protected override void qAwake() {
