@@ -4,20 +4,25 @@ using System.Collections;
 public enum TrailEnum {none, normal};
 
 public class Player : qObject {
-	public float maxSpeed;
+	public float maxTrailSpeed;
+	public float maxNoTrailSpeed;
 	public float acceleration;
 	public float friction;
 	public float turnSpeed;
 	public float shieldTime;
-	
+
+	private float maxSpeed;
 	public TrailEnum trail { get; private set; }
 	[System.NonSerialized]
 	public float velocityHorizontal, velocityVertical;
+	[System.NonSerialized]
+	public bool isInvulnerable;
 	private float minSpeed = 1e-3f;
 	private LevelManager levelManager;
 	private float rotationSpeedThreshold = 0.01f; // minimum speed necessary before rotations happens
-	private bool isInvulnerable;
 	private Shield shield;
+	private new Light light;
+	private TrailRenderer trailRenderer;
 
 	public override void HandleInput(string type, float val) {
 		if (type == "AxisHorizontal") {
@@ -36,10 +41,33 @@ public class Player : qObject {
 				velocityVertical *= friction;
 			}
 		}
+		else if (type == "TrailToggle") {
+			if (val == 0) return;
+			if (trail == TrailEnum.none) {
+				trail = TrailEnum.normal;
+				light.enabled = true;
+				trailRenderer.enabled = true;
+				maxSpeed = maxTrailSpeed;
+			}
+			else if (trail == TrailEnum.normal) {
+				trail = TrailEnum.none;
+				trailRenderer.enabled = false;
+				light.enabled = false;
+				maxSpeed = maxNoTrailSpeed;
+			}
+		}
+		/*else if (type == "TrailClear") {
+			if (val == 0) return;
+			GridManager.instance.SendMessage("ClearNormal");
+		}*/
 	}
 
 	protected override void qAwake() {
 		shield = GetComponentInChildren<Shield>();
+		light = GetComponentInChildren<Light>();
+		trailRenderer = GetComponent<TrailRenderer>();
+		trail = TrailEnum.normal;
+		maxSpeed = maxTrailSpeed;
 		qDie();
 	}
 	
@@ -78,7 +106,6 @@ public class Player : qObject {
 		if (other.gameObject.tag == "enemy" && 
 		    other.gameObject.GetComponent<qObject>().isActive &&
 		    !isInvulnerable) {
-			qDie();
 			LevelManager.instance.SendMessage("qDie");
 		}
 	}

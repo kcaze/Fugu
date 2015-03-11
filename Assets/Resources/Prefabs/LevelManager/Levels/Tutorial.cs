@@ -18,7 +18,7 @@ public class Tutorial : Level {
 		NewWave(120);
 		AddEnemy(lw/2, lh/2+3, "Stander");
 		NewWave(120);
-		AddMessage("Smaller loops give more points.", 5.0f);
+		AddMessage("Draw smaller loops to earn a higher score.", 5.0f);
 		AddEnemy(lw/2+4, lh/2+3, "Stander");
 		AddEnemy(lw/2+4, lh/2-3, "Stander");
 		AddEnemy(lw/2-4, lh/2+3, "Stander");
@@ -29,7 +29,7 @@ public class Tutorial : Level {
 		AddEnemy(2, lh-2, "Stander");
 		AddEnemy(2, 2, "Stander");
 		NewWave(120);
-		AddMessage("As you descend deeper into the ocean, deadlier foes await you.", 5.0f);
+		AddMessage("As you descend deeper into the ocean, deadlier foes await.", 5.0f);
 		AddEnemy(lw/2, lh/2-5, "Chaser");
 		AddEnemy(lw/2, lh/2+5, "Chaser");
 		NewWave(120);

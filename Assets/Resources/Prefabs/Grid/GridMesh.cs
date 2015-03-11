@@ -89,7 +89,7 @@ public class GridMesh : MonoBehaviour{
 
 					// TODO: This is just a small example of a cool wave effect on the grid, not meant to actually
 					// be in the game.
-					this.vertices[grid.Index(x,y)*4+ii].y = 0.5f*Mathf.Sin(((x-y+dx[ii]-dy[ii])%2)*Mathf.PI/2.0f+1.0f*Time.time);
+					//this.vertices[grid.Index(x,y)*4+ii].y = 0.5f*Mathf.Sin(((x-y+dx[ii]-dy[ii])%2)*Mathf.PI/2.0f+1.0f*Time.time);
 					//this.vertices[grid.Index(x,y)*4+ii].x += 0.01f*Mathf.Sin(Time.time + ((y+dy[ii])%2)*Mathf.PI/2);
 				}
 			}

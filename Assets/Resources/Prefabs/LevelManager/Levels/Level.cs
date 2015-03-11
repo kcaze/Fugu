@@ -43,12 +43,11 @@ public class Level : MonoBehaviour {
 			return;
 		}
 		EnemyInfo enemyInfo = new EnemyInfo ();
-		enemyInfo.position = new Vector3(x, 10.0f, y);
+		enemyInfo.position = new Vector3(x, 0.05f, y);
 		enemyInfo.path = "Prefabs/Enemies/"+s+"/"+s;
 		currentWave.Add(enemyInfo);
 	}
 
-	// kind of a hack, but messages are added to the list of enemies and sent with an enemyInfo
 	public void AddMessage (string s, float t) {
 		if (currentWave == null) {
 			Debug.LogError("Must call NewWave() before AddMessage()");

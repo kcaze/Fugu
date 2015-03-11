@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circled: {fileID: 8300000, guid: ee91112bc9b4ac14bbf879a67572ef31, type: 3}
+  death: {fileID: 8300000, guid: 351555eebe6ba33408b2af980cc60aaf, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

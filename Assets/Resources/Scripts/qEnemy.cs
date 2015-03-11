@@ -13,6 +13,11 @@ public class qEnemy : qObject {
 		StartCoroutine(Activate());
 	}
 
+	protected override void qDie() {
+		ScoreManager.instance.score += ScoreManager.instance.ComputeScore(score);
+		Destroy(gameObject);
+	}
+
 	private IEnumerator Activate() {
 		GameObject bubbles = Instantiate(Resources.Load("Prefabs/ParticleEffects/Bubbler")) as GameObject;
 		ParticleSystem bubbleParticles = bubbles.GetComponent<ParticleSystem>();

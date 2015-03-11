@@ -100,6 +100,7 @@ MonoBehaviour:
   score: 200
   bubbleColor: {r: .0667743161, g: .654901981, b: .364933699, a: 1}
   speed: 3.5
+  acceleration: 15
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
