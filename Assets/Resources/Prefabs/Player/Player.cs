@@ -116,6 +116,7 @@ public class Player : qObject {
 		} else if (other.gameObject.tag == "coin") {
 			ScoreManager.instance.combo += 1;
 			other.gameObject.SendMessage("qDie");
+			AudioManager.instance.playCoin();
 		}
 	}
 

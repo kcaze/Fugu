@@ -2,22 +2,20 @@
 using System.Collections;
 
 public class _AudioManager : MonoBehaviour {
-	public AudioClip circled;
-	public AudioClip death;
-	private AudioSource audioSource;
-
-	private void Awake() {
-		audioSource = GetComponent<AudioSource> ();
-	}
+	public AudioSource circled;
+	public AudioSource enemyDeath;
+	public AudioSource coin;
 
 	public void playCircled () {
-		audioSource.clip = circled;
-		audioSource.Play();
+		circled.Play();
 	}
 
 	public void playDeath () {
-		audioSource.clip = death;
-		audioSource.Play();
+		enemyDeath.Play();
+	}
+
+	public void playCoin() {
+		coin.Play();
 	}
 }
 

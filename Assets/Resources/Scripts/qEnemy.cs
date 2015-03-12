@@ -17,6 +17,9 @@ public class qEnemy : qObject {
 	protected override void qDie() {
 		ScoreManager.instance.score += ScoreManager.instance.ComputeScore(score);
 		Instantiate(Resources.Load("Prefabs/Misc/Coin", typeof(GameObject)), transform.position, Quaternion.identity);
+		GameObject explosion = Instantiate(Resources.Load("Prefabs/ParticleEffects/Explosion")) as GameObject;
+		explosion.transform.position = transform.position;
+		AudioManager.instance.playDeath();
 		Destroy(gameObject);
 	}
 

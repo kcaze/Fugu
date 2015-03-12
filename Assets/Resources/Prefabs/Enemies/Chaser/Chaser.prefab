@@ -88,7 +88,7 @@ MonoBehaviour:
   score: 200
   bubbleColor: {r: .0667743161, g: .654901981, b: .364933699, a: 1}
   speed: 5
-  acceleration: 15
+  acceleration: 20
 --- !u!135 &13567358
 SphereCollider:
   m_ObjectHideFlags: 1

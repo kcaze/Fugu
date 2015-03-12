@@ -115,7 +115,7 @@ public class _LevelManager : qObject {
 
 	protected override void qDie() {
 		lives--;
-		AudioManager.instance.playDeath();
+		//AudioManager.instance.playDeath();
 		player.SendMessage("qDie");
 		GridManager.instance.SendMessage("ClearNormal");
 		nextWaveTime = time+level.waveTimes[waveNumber];
