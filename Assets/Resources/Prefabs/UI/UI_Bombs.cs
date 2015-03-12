@@ -3,15 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class UI_Bombs : MonoBehaviour {
-	private Text bombs;
+	private UICanvas canvas;
 	private Player player;
-	
+
 	private void Awake() {
-		bombs = GetComponent<Text>();
 		player = (Player) FindObjectOfType(typeof(Player));
+		canvas = GetComponent<UICanvas>();
 	}
 	
 	private void Update() {
-		bombs.text = "Bombs: " + player.bombs;
+		canvas.n_bombs = player.bombs;
 	}
 }

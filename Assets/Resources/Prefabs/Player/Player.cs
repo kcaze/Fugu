@@ -23,7 +23,6 @@ public class Player : qObject {
 	private float rotationSpeedThreshold = 0.01f; // minimum speed necessary before rotations happens
 	private Shield shield;
 	private new Light light;
-	private TrailRenderer trailRenderer;
 
 	public override void HandleInput(string type, float val) {
 		if (type == "AxisHorizontal") {
@@ -42,20 +41,17 @@ public class Player : qObject {
 				velocityVertical *= friction;
 			}
 		}
-		else if (type == "TrailToggle") {
+		else if (type == "TrailDown") {
 			if (val == 0) return;
-			if (trail == TrailEnum.none) {
-				trail = TrailEnum.normal;
-				light.enabled = true;
-				trailRenderer.enabled = true;
-				maxSpeed = maxTrailSpeed;
-			}
-			else if (trail == TrailEnum.normal) {
-				trail = TrailEnum.none;
-				trailRenderer.enabled = false;
-				light.enabled = false;
-				maxSpeed = maxNoTrailSpeed;
-			}
+			trail = TrailEnum.normal;
+			light.enabled = true;
+			maxSpeed = maxTrailSpeed;
+		}
+		else if (type == "TrailUp") {
+			if (val == 0) return;
+			trail = TrailEnum.none;
+			light.enabled = false;
+			maxSpeed = maxNoTrailSpeed;
 		}
 		else if (type == "TrailClear") {
 			if (val == 0) return;
@@ -66,7 +62,7 @@ public class Player : qObject {
 			bombs--;
 			GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 			for (int ii = 0; ii < enemies.Length; ii++) {
-				if (enemies[ii].GetComponent<qEnemy>().isActive) {
+				if (enemies[ii].GetComponent<qObject>().isActive) {
 					enemies[ii].SendMessage("qDie");
 				}
 			}
@@ -76,9 +72,9 @@ public class Player : qObject {
 	protected override void qAwake() {
 		shield = GetComponentInChildren<Shield>();
 		light = GetComponentInChildren<Light>();
-		trailRenderer = GetComponent<TrailRenderer>();
-		trail = TrailEnum.normal;
-		maxSpeed = maxTrailSpeed;
+		trail = TrailEnum.none;
+		maxSpeed = maxNoTrailSpeed;
+		light.enabled = false;
 		qDie();
 	}
 	

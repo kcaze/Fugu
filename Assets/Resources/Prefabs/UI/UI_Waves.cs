@@ -15,7 +15,6 @@ public class UI_Waves : MonoBehaviour {
 	private void Update () {
 		total= LevelManager.instance.level.waves.Count;
 		int currentwave = LevelManager.instance.waveNumber+1; // level manager's wave number is 0-indexed
-        Debug.Log("" + total + "->" + currentwave);
         if (prevwave == currentwave) return;
         canvas.levelprogress = ((float)currentwave) / (float)total;
         prevwave = currentwave;

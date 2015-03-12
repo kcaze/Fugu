@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class EnemyInfo {
 	public Vector3 position;
 	public string path;
+	public float time;
+	public bool spawned;
 }
 
 public class MessageInfo {
@@ -13,6 +15,7 @@ public class MessageInfo {
 }
 
 public class Level : MonoBehaviour {
+	public int lw, lh; // level width, level height
 	public List<List<EnemyInfo>> waves;
 	public List<List<MessageInfo>> messages;
 	public List<float> waveTimes;
@@ -37,7 +40,7 @@ public class Level : MonoBehaviour {
 		waveTimes.Add(time);
 	}
 
-	public void AddEnemy (float x, float y, string s) {
+	public void AddEnemy (float t, float x, float y, string s) {
 		if (currentWave == null) {
 			Debug.LogError("Must call NewWave() before AddEnemy()");
 			return;
@@ -45,6 +48,8 @@ public class Level : MonoBehaviour {
 		EnemyInfo enemyInfo = new EnemyInfo ();
 		enemyInfo.position = new Vector3(x, 0.05f, y);
 		enemyInfo.path = "Prefabs/Enemies/"+s+"/"+s;
+		enemyInfo.time = t;
+		enemyInfo.spawned = false;
 		currentWave.Add(enemyInfo);
 	}
 

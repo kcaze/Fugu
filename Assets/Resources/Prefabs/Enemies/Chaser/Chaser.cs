@@ -35,6 +35,12 @@ public class Chaser : qEnemy {
 
 		this.transform.Translate(velocity*Time.deltaTime, Space.World);
 
+		// clamp
+		Vector3 position = transform.position;
+		position.x = Mathf.Clamp(position.x, 0.001f, LevelManager.instance.levelWidth - 0.001f);
+		position.z = Mathf.Clamp(position.z, 0.001f, LevelManager.instance.levelHeight - 0.001f);
+		transform.position = position;
+
 		// update rotation
 		transform.rotation = Quaternion.Euler(0, Mathf.Rad2Deg*Mathf.Atan2(velocity.x, velocity.z)+90 ,0);
 	}

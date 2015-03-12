@@ -2,101 +2,86 @@
 using System.Collections;
 
 public class Level1 : Level {
-	private int lw = 30;
-	private int lh = 26;
-	
 	public override void Setup() {
+		lw = 30;
+		lh = 20;
 		BeginLevel();
-		NewWave(3);
-		AddMessage("Press z to toggle your trail on and off.", 5.0f);
-		for (int ii = 0; ii < 4; ii++) {
-			AddEnemy(lw/2+3*Mathf.Cos(ii*Mathf.PI/2), lh/2+3*Mathf.Sin(ii*Mathf.PI/2), "Stander");
+		NewWave(120);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, 5+4*Mathf.Cos(Mathf.PI/2 + 2*Mathf.PI/20*ii), lh-5+4*Mathf.Sin(Mathf.PI/2+2*Mathf.PI/20*ii), "Chaser");
 		}
-		NewWave(3);
-		for (int ii = 0; ii < 6; ii++) {
-			AddEnemy(lw/2+6*Mathf.Cos(ii*Mathf.PI/3), lh/2+6*Mathf.Sin(ii*Mathf.PI/3), "Stander");
+		NewWave(120);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, lw-5+4*Mathf.Cos(2*Mathf.PI/20*ii), lh-5+4*Mathf.Sin(2*Mathf.PI/20*ii), "Chaser");
+		}
+		NewWave(5);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, 5+4*Mathf.Cos(Mathf.PI/2 + 2*Mathf.PI/20*ii), lh-5+4*Mathf.Sin(Mathf.PI/2+2*Mathf.PI/20*ii), "Chaser");
+		}
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, lw-5+4*Mathf.Cos(2*Mathf.PI/20*ii), lh-5+4*Mathf.Sin(2*Mathf.PI/20*ii), "Chaser");
+		}
+		NewWave(5);
+		AddEnemy(0, 1.5f, 1.5f, "Shooter");
+		AddEnemy(0, lw-1.5f, 1.5f, "Shooter");
+		NewWave(120);
+		AddEnemy(0, 1.5f, lh-1.5f, "Shooter");
+		AddEnemy(0, lw-1.5f, lh-1.5f, "Shooter");
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, (ii+1)*lw/6, 2, "Chaser");
 		}
 		NewWave(10);
-		for (int ii = 0; ii < 12; ii++) {
-			AddEnemy(lw/2+12*Mathf.Cos(ii*Mathf.PI/6), lh/2+12*Mathf.Sin(ii*Mathf.PI/6), "Stander");
+		for (int ii = 0; ii < 3; ii++) {
+			AddEnemy(0.0f, lw/2+5*Mathf.Cos(Mathf.PI*2*ii/3), lh/2+5*Mathf.Sin(Mathf.PI*2*ii/3), "Bouncer");
 		}
-		NewWave(1);
-		AddEnemy(lw-2, lh-2, "Chaser");
-		AddEnemy(2, lh-2, "Chaser");
-		AddEnemy(lw-2, 2, "Chaser");
-		AddEnemy(2, 2, "Chaser");
-		NewWave(1);
-		AddEnemy(lw-2, lh-2, "Chaser");
-		AddEnemy(2, lh-2, "Chaser");
-		AddEnemy(lw-2, 2, "Chaser");
-		AddEnemy(2, 2, "Chaser");
-		NewWave(1);
-		AddEnemy(lw-2, lh-2, "Chaser");
-		AddEnemy(2, lh-2, "Chaser");
-		AddEnemy(lw-2, 2, "Chaser");
-		AddEnemy(2, 2, "Chaser");
-		NewWave(1);
-		AddEnemy(lw-2, lh-2, "Chaser");
-		AddEnemy(2, lh-2, "Chaser");
-		AddEnemy(lw-2, 2, "Chaser");
-		AddEnemy(2, 2, "Chaser");
-		NewWave(120);
-		AddEnemy(lw-2, lh-2, "Chaser");
-		AddEnemy(2, lh-2, "Chaser");
-		AddEnemy(lw-2, 2, "Chaser");
-		AddEnemy(2, 2, "Chaser");
-		NewWave(120);
-		for (int ii = 1; ii < 5; ii++) {
-			AddEnemy(ii*lw/5, 2*lh/3, "Bouncer");
+		NewWave(5);
+		for (int ii = 0; ii < 6; ii++) {
+			AddEnemy(0.0f, lw/2+5*Mathf.Cos(Mathf.PI*2*ii/6), lh/2+5*Mathf.Sin(Mathf.PI*2*ii/6), "Bouncer");
+		}
+		NewWave(8);
+		for (int ii = 0; ii < 6; ii++) {
+			AddEnemy(0.0f, lw/2+5*Mathf.Cos(Mathf.PI*2*(ii+0.5f)/6), lh/2+5*Mathf.Sin(Mathf.PI*2*(ii+0.5f)/6), "Bouncer");
+		}
+		for (int ii = 0; ii < 6; ii++) {
+			AddEnemy(2.5f, lw/2+5*Mathf.Cos(Mathf.PI*2*ii/6), lh/2+5*Mathf.Sin(Mathf.PI*2*ii/6), "Bouncer");
+		}
+		NewWave(5);
+		for (int ii = 1; ii < 9; ii++) {
+			AddEnemy(0.0f, ii*lw/9.0f, ii*lh/9.0f, "Shooter");
 		}
 		NewWave(120);
-		for (int ii = 1; ii < 5; ii++) {
-			AddEnemy(ii*lw/5, lh/3, "Bouncer");
+		for (int ii = 1; ii < 9; ii++) {
+			AddEnemy(0.0f, ii*lw/9.0f, (9-ii)*lh/9.0f, "Shooter");
+		}
+		NewWave(5);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0.0f, 5, lh*(ii+1)/6.0f, "Shooter");
+		}
+		NewWave(5);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0.0f, lw-5, lh*(ii+1)/6.0f, "Shooter");
 		}
 		NewWave(120);
-		for (int ii = 1; ii < 8; ii++) {
-			AddEnemy(lw/4, ii*lh/8, "Bouncer");
+		for (int ii = 0; ii < 5; ii++) {
+			for (int jj = 0; jj < 5; jj++) {
+				AddEnemy(3.0f*ii, lw/2+3*Mathf.Cos((ii%2)*Mathf.PI+Mathf.PI*jj/4), lh/2+3*Mathf.Sin((ii%2)*Mathf.PI+Mathf.PI*jj/4), (ii%2 == 0) ? "Bouncer" : "Chaser");
+			}
 		}
-		for (int ii = 1; ii < 8; ii++) {
-			AddEnemy(lw/3, ii*lh/8, "Stander");
+
+		NewWave(120);
+		for (int ii = 0; ii < 6; ii++) {
+			AddEnemy(0, lw/2+(ii-2.5f)*3, lh/2-3, "Stander");
+			AddEnemy(0, lw/2+(ii-2.5f)*3, lh/2+3, "Stander");
+			AddEnemy(0, lw/2-3, lh/2+(ii-2.5f)*3, "Stander");
+			AddEnemy(0, lw/2+3, lh/2+(ii-2.5f)*3, "Stander");
 		}
-		NewWave(120);
-		for (int ii = 1; ii < 8; ii++) {
-			AddEnemy(3*lw/4, ii*lh/8, "Bouncer");
-		}
-		for (int ii = 1; ii < 8; ii++) {
-			AddEnemy(2*lw/3, ii*lh/8, "Chaser");
-		}
-		NewWave(1);
-		AddEnemy(lw/4, lh/4, "Bouncer");
-		AddEnemy(3*lw/4, 3*lh/4, "Bouncer");
-		AddEnemy(lw/4, 3*lh/4, "Chaser");
-		AddEnemy(3*lw/4, lh/4, "Chaser");
-		NewWave(1);
-		AddEnemy(lw/4, lh/4, "Chaser");
-		AddEnemy(3*lw/4, 3*lh/4, "Chaser");
-		AddEnemy(lw/4, 3*lh/4, "Bouncer");
-		AddEnemy(3*lw/4, lh/4, "Bouncer");
-		NewWave(1);
-		AddEnemy(lw/4, lh/4, "Bouncer");
-		AddEnemy(3*lw/4, 3*lh/4, "Bouncer");
-		AddEnemy(lw/4, 3*lh/4, "Chaser");
-		AddEnemy(3*lw/4, lh/4, "Chaser");
-		NewWave(120);
-		AddEnemy(lw/4, lh/4, "Chaser");
-		AddEnemy(3*lw/4, 3*lh/4, "Chaser");
-		AddEnemy(lw/4, 3*lh/4, "Bouncer");
-		AddEnemy(3*lw/4, lh/4, "Bouncer");
-		NewWave(120);
-		AddEnemy(3*lw/5, 3*lh/5, "Shooter");
-		AddEnemy(2*lw/5, 3*lh/5, "Shooter");
-		AddEnemy(3*lw/5, 2*lh/5, "Shooter");
-		AddEnemy(2*lw/5, 2*lh/5, "Shooter");
-		NewWave(120);
-		AddEnemy(lw-3, lh-3, "Shooter");
-		AddEnemy(lw-3, 3, "Shooter");
-		AddEnemy(3, lh-3, "Shooter");
-		AddEnemy(3, 3, "Shooter");
+
+		/*for (int ii = 0; ii < 10; ii++) {
+			AddEnemy(1.5f*(ii+1), lw/2-3f, lh/2-3f, "Chaser");
+			AddEnemy(1.5f*(ii+1), lw/2+3f, lh/2-3f, "Chaser");
+			AddEnemy(1.5f*(ii+1), lw/2-3f, lh/2+3f, "Chaser");
+			AddEnemy(1.5f*(ii+1), lw/2+3f, lh/2+3f, "Chaser");
+		}*/
 
 
 		EndLevel();

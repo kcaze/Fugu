@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 200
   bubbleColor: {r: .0667743161, g: .654901981, b: .364933699, a: 1}
-  speed: 3.5
+  speed: 5
   acceleration: 15
 --- !u!135 &13567358
 SphereCollider:

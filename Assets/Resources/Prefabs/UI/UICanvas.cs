@@ -43,11 +43,10 @@ public class UICanvas : MonoBehaviour {
         for (int i = 0; i < n_lives; i++) {
             GUI.DrawTexture(rlife[i], txlife,ScaleMode.ScaleToFit,true,0);
         }
-        for(int i = 0; i <n_bombs;i++){
+        for(int i = 0; i < n_bombs;i++){
             GUI.DrawTexture(rbomb[i], txbomb,ScaleMode.ScaleToFit,true,0);
         }
         rpointer.Set(wcenter - unit * 5.5f + 10*unit*levelprogress, height - offset - unit, 0.5f*unit, 0.5f*unit);
-        Debug.Log(""+levelprogress);
         GUI.DrawTexture(rpointer, txpointer,ScaleMode.ScaleToFit,true,0);
 	}
   

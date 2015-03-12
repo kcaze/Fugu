@@ -21,7 +21,8 @@ public class _InputManager : MonoBehaviour {
 			listeners[ii].HandleInput("AxisHorizontal", Input.GetAxisRaw("Horizontal"));
 			listeners[ii].HandleInput("AxisVertical", Input.GetAxisRaw("Vertical"));
 			listeners[ii].HandleInput("Pause", System.Convert.ToSingle(Input.GetButtonDown("Pause")));
-			listeners[ii].HandleInput("TrailToggle", System.Convert.ToSingle(Input.GetButtonDown("TrailToggle")));
+			listeners[ii].HandleInput("TrailDown", System.Convert.ToSingle(Input.GetButtonDown("Trail")));
+			listeners[ii].HandleInput("TrailUp", System.Convert.ToSingle(Input.GetButtonUp("Trail")));
 			listeners[ii].HandleInput("TrailClear", System.Convert.ToSingle(Input.GetButtonDown("TrailClear")));
 			listeners[ii].HandleInput("Bomb", System.Convert.ToSingle(Input.GetButtonDown("Bomb")));
 		}

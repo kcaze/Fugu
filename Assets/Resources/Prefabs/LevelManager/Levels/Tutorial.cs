@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Tutorial : Level {
-	private int lw = 30;
-	private int lh = 26;
-
 	public override void Setup() {
+		lw = 30;
+		lh = 26;
 		BeginLevel();
-		NewWave(120);
+		/*NewWave(120);
 		AddEnemy(lw/2+4, lh/2, "Stander");
 		AddMessage("Circle enemies to kill them.", 5.0f);
 		NewWave(120);
@@ -46,7 +45,7 @@ public class Tutorial : Level {
 		}
 		for (int ii = 3; ii < lw-2; ii += 4) {
 			AddEnemy(ii, lh/2, "Stander");
-		}
+		}*/
 		EndLevel();
 	}
 }

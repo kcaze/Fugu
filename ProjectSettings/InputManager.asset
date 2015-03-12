@@ -38,7 +38,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: TrailToggle
+    m_Name: Trail
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

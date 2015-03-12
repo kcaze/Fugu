@@ -9,13 +9,17 @@ public class _GridManager : qObject {
 	private Vector3 prevPos;
 	private float lineThreshold;
 
-	private void Awake () {
+	protected override void qAwake () {
 		this.player = (Player) FindObjectOfType(typeof(Player));
 		this.grid = gameObject.GetComponent<Grid>();
 		this.npoints = 0;
 		this.line  = GetComponent<LineRenderer>();
 		this.prevPos = player.transform.position;
 		this.lineThreshold = 0.3f;
+	}
+
+	protected override void qStart() {
+		this.grid.Initialize(LevelManager.instance.levelWidth, LevelManager.instance.levelHeight);
 	}
 	
 	private IEnumerator FillEmpty() {

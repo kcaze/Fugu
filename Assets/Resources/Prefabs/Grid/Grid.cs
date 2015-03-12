@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
+	[System.NonSerialized]
 	public int gridWidth;
+	[System.NonSerialized]
 	public int gridHeight;
 	public float tileWidth;
 	public float tileHeight;
@@ -11,7 +13,9 @@ public class Grid : MonoBehaviour {
 	public TileEnum[] grid;
 	public int gridSize { get; private set; }
 
-	private void Awake() {
+	public void Initialize(int gridWidth, int gridHeight) {
+		this.gridWidth = gridWidth;
+		this.gridHeight = gridHeight;
 		this.gridSize = this.gridWidth*this.gridHeight;
 		this.grid = new TileEnum[this.gridSize];
 		for (int ii = 0; ii < this.gridSize; ii++) {

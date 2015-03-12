@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 public class _LevelManager : qObject {
 	public string levelName;
-	public float levelWidth;
-	public float levelHeight;
+	[System.NonSerialized]
+	public int levelWidth;
+	[System.NonSerialized]
+	public int levelHeight;
 	public int lives;
 	[System.NonSerialized]
 	public Level level;
@@ -14,8 +16,9 @@ public class _LevelManager : qObject {
 
 	private Player player;
 	private float time;
-	private float previousWaveTime;
+	private float waveBeginTime;
 	private float nextWaveTime;
+	private bool waveDoneSpawning;
 	private UI ui;
 	
 	public void Pause() {
@@ -46,9 +49,11 @@ public class _LevelManager : qObject {
 		ui = (UI) FindObjectOfType(typeof(UI));
 		level = (Level) gameObject.AddComponent(levelName);
 		level.Setup();
+		levelWidth = level.lw;
+		levelHeight = level.lh;
 		time = 0;
-		nextWaveTime = 0;
-		waveNumber = -1;
+		nextWaveTime = level.waveTimes[0];
+		waveNumber = 0;
 		player = (Player) FindObjectOfType(typeof(Player));
 		player.transform.position = new Vector3(levelWidth/2, player.transform.position.y, levelHeight/2);
 	}
@@ -60,23 +65,38 @@ public class _LevelManager : qObject {
 	protected override void qUpdate() {
 		time += Time.deltaTime;
 
-		GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
-		bool currentWaveCleared = enemyObjects.Length == 0 ? true : false;
+		// spawn enemies
+		waveDoneSpawning = true;
+		for (int ii = 0; ii < level.waves[waveNumber].Count; ii++) {
+			EnemyInfo enemyInfo = level.waves[waveNumber][ii];
+			if (enemyInfo.spawned) continue;
+			waveDoneSpawning = false;
+			if (time-waveBeginTime > enemyInfo.time) {
+				Object enemy = Resources.Load(enemyInfo.path, typeof(GameObject));
+				Instantiate(enemy, enemyInfo.position, Quaternion.identity);
+				enemyInfo.spawned = true;
+			}
+		}
 
-		// spawn next wave
-		if (currentWaveCleared || time >= nextWaveTime) {
+		GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("enemy");
+		bool currentWaveCleared = true;
+		for (int ii = 0; ii < enemyObjects.Length; ii++) {
+			if (enemyObjects[ii].GetComponent<qEnemy>()) {
+				currentWaveCleared = false;
+				break;
+			}
+		}
+
+		// move on to next wave
+		if ((waveDoneSpawning && currentWaveCleared) || time >= nextWaveTime) {
 			waveNumber++;
 			if (waveNumber >= level.waves.Count) {
 				Victory();
 			}
 			else {
 				time = nextWaveTime;
+				waveBeginTime = time;
 				nextWaveTime += level.waveTimes[waveNumber];
-				for (int ii = 0; ii < level.waves[waveNumber].Count; ii++) {
-					EnemyInfo enemyInfo = level.waves[waveNumber][ii];
-					Object enemy = Resources.Load(enemyInfo.path, typeof(GameObject));
-					Instantiate(enemy, enemyInfo.position, Quaternion.identity);
-				}
 				for (int ii = 0; ii < level.messages[waveNumber].Count; ii++) {
 					MessageInfo msgInfo = level.messages[waveNumber][ii];
 					Object msgObj = Resources.Load("Prefabs/UI/Message/Message", typeof(GameObject));
@@ -85,6 +105,8 @@ public class _LevelManager : qObject {
 				}
 			}
 		}
+
+
 	}
 
 	private void Victory() {

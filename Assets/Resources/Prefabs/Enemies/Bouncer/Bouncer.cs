@@ -9,6 +9,7 @@ public class Bouncer : qEnemy {
 		base.qAwake();
 		float angle = Mathf.Deg2Rad*(Mathf.FloorToInt(Random.Range(0, 4))*90 + 45);
 		direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+		previousPosition = transform.position;
 	}
 	
 	private void ReflectHorizontal() {

@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Level2 : Level {
-	private int lw = 20;
-	private int lh = 18;
-
 	public override void Setup() {
+		lw = 20;
+		lh = 18;
 		BeginLevel();
 		// beginning
-		NewWave(7);
+		/*NewWave(7);
 		AddEnemy(1,1, "Bouncer");
 		AddEnemy(lw-1,1, "Bouncer");
 		AddEnemy(1,lh-1, "Bouncer");
@@ -124,7 +123,7 @@ public class Level2 : Level {
 		AddEnemy(1,1, "Shooter");
 		AddEnemy(lw-1,1, "Shooter");
 		AddEnemy(1,lh-1, "Shooter");
-		AddEnemy(lw-1,lh-1, "Shooter");
+		AddEnemy(lw-1,lh-1, "Shooter");*/
 		EndLevel();
 	}
 }
