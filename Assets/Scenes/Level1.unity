@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
 --- !u!1001 &146439322
 Prefab:
   m_ObjectHideFlags: 0
@@ -721,7 +721,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!82 &909681742
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1263,7 +1263,7 @@ Transform:
   m_GameObject: {fileID: 1113370855}
   m_LocalRotation: {x: -.382683486, y: -1.67276273e-08, z: -.923879564, w: -4.03840588e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1703233939}
   m_RootOrder: 0
@@ -1306,7 +1306,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &1286441846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1457,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1512,7 +1512,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 443660, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 143660, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
       propertyPath: m_Name
@@ -1536,11 +1536,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13623996, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
       propertyPath: m_Radius
-      value: .300000012
+      value: .200000003
       objectReference: {fileID: 0}
     - target: {fileID: 13623996, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
       propertyPath: m_Height
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 143664, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5443664, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
@@ -1582,7 +1586,7 @@ Transform:
   - {fileID: 1113370860}
   - {fileID: 989886825}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!54 &1703233940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1648,7 +1652,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: .300000012
+  m_Radius: .200000003
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -1659,7 +1663,7 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 1363493334}
   m_GameObject: {fileID: 1703233938}
-  m_Mesh: {fileID: 4300000, guid: 0c750d4f35157e044beaaee156deb7ff, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 67f79424439ecce4cb65705e7cfd3a5e, type: 3}
 --- !u!96 &1703233945
 TrailRenderer:
   m_ObjectHideFlags: 0
@@ -1799,6 +1803,7 @@ GameObject:
   - 124: {fileID: 1882865084}
   - 81: {fileID: 1882865083}
   - 114: {fileID: 1882865082}
+  - 114: {fileID: 1882865081}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1806,6 +1811,45 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1882865081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882865080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a773099f140e846f7835d27351846623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 2.5
+  quality: 1
+  bloomIntensity: 2
+  bloomThreshhold: .5
+  bloomThreshholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 2
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshhold: .300000012
+  lensFlareSaturation: .75
+  flareColorA: {r: .400000006, g: .400000006, b: .800000012, a: .75}
+  flareColorB: {r: .400000006, g: .800000012, b: .800000012, a: .75}
+  flareColorC: {r: .800000012, g: .400000006, b: .800000012, a: .75}
+  flareColorD: {r: .800000012, g: .400000006, b: 0, a: .75}
+  blurWidth: 1
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!114 &1882865082
 MonoBehaviour:
   m_ObjectHideFlags: 0

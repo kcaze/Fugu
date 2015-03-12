@@ -76,12 +76,12 @@ public class Level1 : Level {
 			AddEnemy(0, lw/2+3, lh/2+(ii-2.5f)*3, "Stander");
 		}
 
-		/*for (int ii = 0; ii < 10; ii++) {
+		for (int ii = 0; ii < 10; ii++) {
 			AddEnemy(1.5f*(ii+1), lw/2-3f, lh/2-3f, "Chaser");
 			AddEnemy(1.5f*(ii+1), lw/2+3f, lh/2-3f, "Chaser");
 			AddEnemy(1.5f*(ii+1), lw/2-3f, lh/2+3f, "Chaser");
 			AddEnemy(1.5f*(ii+1), lw/2+3f, lh/2+3f, "Chaser");
-		}*/
+		}
 
 
 		EndLevel();

@@ -42,6 +42,6 @@ public class Chaser : qEnemy {
 		transform.position = position;
 
 		// update rotation
-		transform.rotation = Quaternion.Euler(0, Mathf.Rad2Deg*Mathf.Atan2(velocity.x, velocity.z)+90 ,0);
+		transform.rotation = Quaternion.Euler(0, Mathf.Rad2Deg*Mathf.Atan2(velocity.x, velocity.z) ,0);
 	}
 }

@@ -46,6 +46,7 @@ public class Bouncer : qEnemy {
 
 	private void OnTriggerEnter(Collider other) {
 		if (!other.GetComponent<Bouncer>()) return;
+		if (!other.GetComponent<qObject>().isActive) return;
 		transform.position = previousPosition;
 		Vector3 otherDirection = other.GetComponent<Bouncer>().direction;
 		if (direction.x*otherDirection.x < 0) {
