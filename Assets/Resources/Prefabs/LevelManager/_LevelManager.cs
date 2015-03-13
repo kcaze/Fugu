@@ -115,6 +115,9 @@ public class _LevelManager : qObject {
 
 	protected override void qDie() {
 		lives--;
+		if (lives == 0) {
+			Application.LoadLevel(Application.loadedLevel);
+		}
 		//AudioManager.instance.playDeath();
 		player.SendMessage("qDie");
 		GridManager.instance.SendMessage("ClearNormal");

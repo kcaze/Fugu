@@ -254,7 +254,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451026, guid: 341245bd641464a45bca7fe72ef1cc5b, type: 2}
       propertyPath: levelName
-      value: Level1
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 134082, guid: 341245bd641464a45bca7fe72ef1cc5b, type: 2}
       propertyPath: m_IsActive
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9892042479a4b54a8ac767c00faa0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Level1
+  levelName: Level3
   lives: 3
 --- !u!4 &262372962
 Transform:
@@ -329,6 +329,22 @@ Prefab:
     - target: {fileID: 446546, guid: 94fe2d22277561b4c9970ce6868e2d43, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439552, guid: 94fe2d22277561b4c9970ce6868e2d43, type: 2}
+      propertyPath: followWidth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439552, guid: 94fe2d22277561b4c9970ce6868e2d43, type: 2}
+      propertyPath: followHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439552, guid: 94fe2d22277561b4c9970ce6868e2d43, type: 2}
+      propertyPath: tiltDegree
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439552, guid: 94fe2d22277561b4c9970ce6868e2d43, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94fe2d22277561b4c9970ce6868e2d43, type: 2}
@@ -526,7 +542,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481180, guid: e135dafcd7a03594fbe6884f9416176c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11473010, guid: e135dafcd7a03594fbe6884f9416176c, type: 2}
       propertyPath: gridWidth
@@ -547,6 +563,10 @@ Prefab:
     - target: {fileID: 181180, guid: e135dafcd7a03594fbe6884f9416176c, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406432, guid: e135dafcd7a03594fbe6884f9416176c, type: 2}
+      propertyPath: trailDuration
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -1009,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
+  trailDuration: 1.5
 --- !u!114 &959193417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,6 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileWidth: 1
   tileHeight: 1
+  durationGrid: []
 --- !u!4 &959193422
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,6 +1929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followWidth: 5
   followHeight: 5
+  tiltDegree: 8
 --- !u!81 &1882865083
 AudioListener:
   m_ObjectHideFlags: 0

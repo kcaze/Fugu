@@ -3,6 +3,7 @@ using System.Collections;
 
 public class _GridManager : qObject {
 	public Grid grid;
+	public float trailDuration;
 	private Player player;
 	private LineRenderer line;
 	private int npoints;
@@ -27,6 +28,7 @@ public class _GridManager : qObject {
 		for (int ii = 0; ii < grid.gridSize; ii++) {
 			if (grid.grid[ii] == TileEnum.normalCircled) {
 				grid.grid[ii] = TileEnum.empty;
+				grid.durationGrid[ii] = 0;
 			}
 		}
 		yield return null;
@@ -48,9 +50,13 @@ public class _GridManager : qObject {
 	}
 
 	private void HandleTrail(int index) {
+		if (this.grid.grid[index] == TileEnum.normal && player.trail == TrailEnum.normal) {
+			this.grid.durationGrid[index] = trailDuration;
+		}
 		if (this.grid.grid[index] == TileEnum.normal || this.grid.grid[index] == TileEnum.normalCircled) return;
 		if (player.trail != TrailEnum.normal) return;
 		this.grid.grid[index] = TileEnum.normal;
+		this.grid.durationGrid[index] = trailDuration;
 
 		int[] dx = {1, 0, -1, 0};
 		int[] dy = {0, 1, 0, -1};

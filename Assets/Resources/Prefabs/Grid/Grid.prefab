@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
+  trailDuration: 1
 --- !u!114 &11423822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,10 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefb92611c1c7014b9d37b910b7f7e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWidth: 0
-  gridHeight: 0
   tileWidth: 0
   tileHeight: 0
+  durationGrid: []
 --- !u!120 &12047336
 LineRenderer:
   m_ObjectHideFlags: 1

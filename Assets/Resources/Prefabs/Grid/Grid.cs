@@ -11,6 +11,7 @@ public class Grid : MonoBehaviour {
 	public float tileHeight;
 	[System.NonSerialized]
 	public TileEnum[] grid;
+	public float[] durationGrid;
 	public int gridSize { get; private set; }
 
 	public void Initialize(int gridWidth, int gridHeight) {
@@ -18,8 +19,19 @@ public class Grid : MonoBehaviour {
 		this.gridHeight = gridHeight;
 		this.gridSize = this.gridWidth*this.gridHeight;
 		this.grid = new TileEnum[this.gridSize];
+		this.durationGrid = new float[this.gridSize];
 		for (int ii = 0; ii < this.gridSize; ii++) {
 			this.grid[ii] = TileEnum.empty;
+			this.durationGrid[ii] = 0;
+		}
+	}
+
+	private void Update() {
+		for (int ii = 0; ii < this.gridSize; ii++) {
+			if (this.durationGrid[ii] > 0) {
+				this.durationGrid[ii]-= Time.deltaTime;
+				if (this.durationGrid[ii] <= 0 && this.grid[ii] == TileEnum.normal) this.grid[ii] = TileEnum.empty;
+			}
 		}
 	}
 

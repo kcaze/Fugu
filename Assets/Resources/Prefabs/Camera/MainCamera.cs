@@ -4,6 +4,7 @@ using System.Collections;
 public class MainCamera : MonoBehaviour {
 	public float followWidth;
 	public float followHeight;
+	public float tiltDegree;
 	private Player player;
 
 	void Start () {
@@ -27,7 +28,7 @@ public class MainCamera : MonoBehaviour {
 		position.z = LevelManager.instance.levelHeight/2 + ratioY*followHeight;
 		this.transform.position = position;
 		this.transform.rotation = Quaternion.identity;
-		this.transform.Rotate(new Vector3(90-ratioY*10, 0, 0), Space.World);
-		this.transform.Rotate(new Vector3(0, 0, -ratioX*10), Space.World);
+		this.transform.Rotate(new Vector3(90+ratioY*tiltDegree, 0, 0), Space.World);
+		this.transform.Rotate(new Vector3(0, 0, -ratioX*tiltDegree), Space.World);
 	}
 }

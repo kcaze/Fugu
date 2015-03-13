@@ -84,7 +84,7 @@ MonoBehaviour:
   score: 100
   bubbleColor: {r: 1, g: .434540391, b: 0, a: 1}
   speed: 0
-  shootingPeriod: .800000012
+  shootingPeriod: 1.79999995
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
