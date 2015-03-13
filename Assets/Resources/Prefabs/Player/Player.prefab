@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b631386d603874f991b47f246d42d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTrailSpeed: 12
-  maxNoTrailSpeed: 20
-  acceleration: 120
-  friction: .699999988
+  maxTrailSpeed: 25
+  maxNoTrailSpeed: 35
+  acceleration: 12000
+  friction: .5
   turnSpeed: 999999996000
   shieldTime: 5
   bombs: 3

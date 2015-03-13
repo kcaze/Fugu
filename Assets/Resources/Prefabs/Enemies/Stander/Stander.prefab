@@ -11,8 +11,8 @@ GameObject:
   - 33: {fileID: 3305814}
   - 65: {fileID: 6505814}
   - 23: {fileID: 2305814}
-  - 114: {fileID: 11460022}
   - 54: {fileID: 5480432}
+  - 114: {fileID: 11485948}
   m_Layer: 0
   m_Name: Stander
   m_TagString: enemy
@@ -58,7 +58,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105814}
-  m_Mesh: {fileID: 4300000, guid: 139cfa81723540e4c8b1814675878ab5, type: 3}
+  m_Mesh: {fileID: 4300000, guid: fcf38fee62c75ad4ba68d7894ace5239, type: 3}
 --- !u!54 &5480432
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -86,7 +86,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11460022
+--- !u!114 &11485948
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 105814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ee0036724af3774db9811bfba085a49, type: 3}
+  m_Script: {fileID: 11500000, guid: c252f4cedc414d545bc24d5c888e02f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   score: 50

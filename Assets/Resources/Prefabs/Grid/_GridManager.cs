@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class _GridManager : qObject {
 	public Grid grid;
@@ -66,7 +67,7 @@ public class _GridManager : qObject {
 			coord.first += dx[ii];
 			coord.second += dy[ii];
 			if (grid.IsEnclosed(grid.Index(coord.first, coord.second), TileEnum.normal)) {
-				grid.FloodFill1(grid.Index(coord.first, coord.second), TileEnum.normal);
+				grid.FloodFill2(grid.Index(coord.first, coord.second), TileEnum.normalCircled);
 				enclosed = true;
 			}
 		}
@@ -74,14 +75,15 @@ public class _GridManager : qObject {
 		if (enclosed) {
 			AudioManager.instance.playCircled();
 			float tileCount = 0;
+
 			for (int ii = 0; ii < grid.gridSize; ii++) {
 				if (grid.grid[ii] == TileEnum.normal) {
 					grid.grid[ii] = TileEnum.normalCircled;
 					tileCount++;
 				}
 			}
+
 			StartCoroutine(FillEmpty());
-			ScoreManager.instance.tileFraction = tileCount / grid.gridSize;
 			for (int ii = 0; ii < enemies.Length; ii++) {
 				GameObject enemy = enemies[ii];
 				if (!enemy.GetComponent<qObject>().isActive) continue;
@@ -94,7 +96,7 @@ public class _GridManager : qObject {
 				if (tr == null) tr = bl;
 				for (int jj = bl.first; jj <= tr.first; jj++) {
 					for (int kk = bl.second; kk <= tr.second; kk++) {
-						int enemyIndex = this.grid.WorldToGrid(new Vector3(jj, 0, kk));
+						int enemyIndex = this.grid.WorldToGrid(new Vector3(jj*grid.tileWidth, 0, kk*grid.tileHeight));
 						if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
 							enemy.SendMessage("qDie");
 							goto outside;
@@ -103,7 +105,6 @@ public class _GridManager : qObject {
 				}
 				outside: continue;
 			}
-			ScoreManager.instance.tileFraction = 1; // default is 1, so bombs will have no tile multiplier
 			this.line.SetVertexCount(0);
 			npoints = 0;
 		}

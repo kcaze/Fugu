@@ -15,8 +15,8 @@ public class Grid : MonoBehaviour {
 	public int gridSize { get; private set; }
 
 	public void Initialize(int gridWidth, int gridHeight) {
-		this.gridWidth = gridWidth;
-		this.gridHeight = gridHeight;
+		this.gridWidth = (int)(gridWidth/tileWidth);
+		this.gridHeight = (int)(gridHeight/tileHeight);
 		this.gridSize = this.gridWidth*this.gridHeight;
 		this.grid = new TileEnum[this.gridSize];
 		this.durationGrid = new float[this.gridSize];

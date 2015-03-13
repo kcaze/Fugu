@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 100
   bubbleColor: {r: 1, g: 0, b: 0, a: 1}
-  speed: 3
+  speed: 8
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

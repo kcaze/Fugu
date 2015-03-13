@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f627a7fd308d4f43aebe4c337ab8460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
-  attractConstant: 25
+  maxSpeed: 50
+  attractConstant: 45
   attractRadius: 2
   friction: .99000001
 --- !u!136 &13641044
