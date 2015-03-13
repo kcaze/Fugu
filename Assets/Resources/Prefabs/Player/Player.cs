@@ -71,11 +71,12 @@ public class Player : qObject {
 
 	protected override void qAwake() {
 		shield = GetComponentInChildren<Shield>();
+		shield.renderer.enabled = false;
 		light = GetComponentInChildren<Light>();
 		trail = TrailEnum.none;
 		maxSpeed = maxNoTrailSpeed;
 		light.enabled = false;
-		qDie();
+		Reset();
 	}
 	
 	protected override void qStart() {
@@ -110,6 +111,7 @@ public class Player : qObject {
 	}
 
 	private void OnTriggerEnter(Collider other) {
+		if (!isActive) return;
 		if (other.gameObject.tag == "enemy") { 
 			if (!other.gameObject.GetComponent<qObject>().isActive || isInvulnerable) return;
 			LevelManager.instance.SendMessage("qDie");
@@ -120,15 +122,32 @@ public class Player : qObject {
 		}
 	}
 
-	protected override void qDie() {
+	private void Reset() {
 		velocityHorizontal = 0;
 		velocityVertical = 0;
-		isInvulnerable = true;
-		StartCoroutine(becomeVulnerable());
-		shield.Activate(shieldTime);
 		transform.position = new Vector3(LevelManager.instance.levelWidth/2, 
 		                                 transform.position.y, 
 		                                 LevelManager.instance.levelHeight/2);
+	}
+
+	private IEnumerator Death() {
+		AudioManager.instance.playPlayerDeath();
+		GameObject explosion = Instantiate(Resources.Load("Prefabs/ParticleEffects/PlayerExplosion")) as GameObject;
+		explosion.transform.position = transform.position;
+		isActive = false;
+		renderer.enabled = false;
+		yield return new WaitForSeconds(1.5f);
+		renderer.enabled = true;
+		isActive = true;
+		Reset();
+		isInvulnerable = true;
+		StartCoroutine(becomeVulnerable());
+		shield.Activate(shieldTime);
+
+	}
+
+	protected override void qDie() {
+		StartCoroutine(Death());
 	}
 
 	private IEnumerator becomeVulnerable() {

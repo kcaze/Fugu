@@ -7,6 +7,7 @@ public class ShooterBullet : qObject {
 	public Vector3 direction;
 
 	protected override void qUpdate () {
+		direction.y = 0;
 		transform.position += direction*speed*Time.deltaTime;
 		if (transform.position.x < 0 || transform.position.x > LevelManager.instance.levelWidth){
 			Destroy(gameObject);

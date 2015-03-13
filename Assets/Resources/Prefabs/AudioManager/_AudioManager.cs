@@ -4,6 +4,7 @@ using System.Collections;
 public class _AudioManager : MonoBehaviour {
 	public AudioSource circled;
 	public AudioSource enemyDeath;
+	public AudioSource playerDeath;
 	public AudioSource coin;
 
 	public void playCircled () {
@@ -12,6 +13,10 @@ public class _AudioManager : MonoBehaviour {
 
 	public void playDeath () {
 		enemyDeath.Play();
+	}
+
+	public void playPlayerDeath() {
+		playerDeath.Play();
 	}
 
 	public void playCoin() {
