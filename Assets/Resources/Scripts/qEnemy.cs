@@ -36,6 +36,8 @@ public class qEnemy : qObject {
 		ParticleSystem bubbleParticles = bubbles.GetComponent<ParticleSystem>();
 		bubbles.transform.position = transform.position;
 		bubbleParticles.startColor = bubbleColor;
+		bubbles.GetComponent<Light>().color = bubbleColor;
+
 		GetComponent<MeshRenderer>().enabled = false;
 		yield return new WaitForSeconds(1.3f);
 

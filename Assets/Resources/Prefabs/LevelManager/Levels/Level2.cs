@@ -4,126 +4,63 @@ using System.Collections.Generic;
 
 public class Level2 : Level {
 	public override void Setup() {
-		lw = 20;
-		lh = 18;
+		lw = 30;
+		lh = 14;
 		BeginLevel();
-		// beginning
-		/*NewWave(7);
-		AddEnemy(1,1, "Bouncer");
-		AddEnemy(lw-1,1, "Bouncer");
-		AddEnemy(1,lh-1, "Bouncer");
-		AddEnemy(lw-1,lh-1, "Bouncer");
-		NewWave(7);
-		AddEnemy(1, lh/2, "Bouncer");
-		AddEnemy(lw-1, lh/2, "Bouncer");
-		AddEnemy(lw/2, 1, "Bouncer");
-		AddEnemy(lw/2, lh-1, "Bouncer");
-		NewWave(12);
-		AddEnemy(1,1, "Bouncer");
-		AddEnemy(lw-1,1, "Bouncer");
-		AddEnemy(1,lh-1, "Bouncer");
-		AddEnemy(lw-1,lh-1, "Bouncer");
-		AddEnemy(1, lh/2, "Bouncer");
-		AddEnemy(lw-1, lh/2, "Bouncer");
-		AddEnemy(lw/2, 1, "Bouncer");
-		AddEnemy(lw/2, lh-1, "Bouncer");
-		NewWave(7);
-		AddEnemy(1,1, "Bouncer");
-		AddEnemy(1,2, "Bouncer");
-		AddEnemy(2,1, "Bouncer");
-		AddEnemy(2,2, "Bouncer");
-		AddEnemy(lw-1, lh-1, "Chaser");
-		NewWave(6);
-		AddEnemy(1,1, "Chaser");
-		AddEnemy(1,2, "Chaser");
-		AddEnemy(2,1, "Chaser");
-		AddEnemy(2,2, "Chaser");
-		AddEnemy(lw-1,lh-1, "Chaser");
-		AddEnemy(lw-1,lh-2, "Chaser");
-		AddEnemy(lw-2,lh-1, "Chaser");
-		AddEnemy(lw-2,lh-2, "Chaser");
-
-		// middle
-		NewWave(8);
-		for (int ii = 1; ii < lh; ii += 2) {
-			AddEnemy(lw/2, ii, "Bouncer");
+		NewWave(100);
+		AddEnemy(0, 5, lh/2, "Shooter");
+		AddEnemy(0, lw-5, lh/2, "Shooter");
+		NewWave(100);
+		AddEnemy(0, lw/2, lh/2, "Shooter");
+		AddEnemy(0, 5, lh/2, "Stander");
+		AddEnemy(0, lw-5, lh/2, "Stander");
+		NewWave(100);
+		for (int ii = 0; ii < 3; ii++) {
+			AddEnemy(0, lw/2 + (ii-1)*5, lh-3, "Chaser");
 		}
-		NewWave(8);
-		for (int ii = 1; ii < lw; ii += 2) {
-			AddEnemy(ii, lh/2, "Bouncer");
+		NewWave(100);
+		for (int ii = 0; ii < 3; ii++) {
+			AddEnemy(0, lw/2 + (ii-1)*5, 3, "Chaser");
 		}
-		NewWave(20);
-		for (int ii = 1; ii < lw; ii += 2) {
-			AddEnemy(ii, lh/2, "Bouncer");
+		NewWave(100);
+		for (int ii = 0; ii < 3; ii++) {
+			AddEnemy(0, 4, lh/2 + (ii-1)*3, "Stander");
 		}
-		for (int ii = 1; ii < lh; ii += 2) {
-			AddEnemy(lw/2, ii, "Bouncer");
+		AddEnemy(0, lw-4, lh/2, "Chaser");
+		NewWave(100);
+		for (int ii = 0; ii < 3; ii++) {
+			AddEnemy(0, 4, lh/2 + (ii-1)*3, "Chaser");
 		}
-		NewWave(2);
-		for (int ii = 1; ii <= 3; ii++) {
-			for (int jj = 1; jj <= 3; jj++) {
-				AddEnemy(lw-ii, 1+jj, "Chaser");
-			}
+		AddEnemy(0, lw-4, lh/2, "Stander");
+		NewWave(100);
+		AddEnemy(0, 3, 3, "Shooter");
+		AddEnemy(0, lw-3, 3, "Shooter");
+		AddEnemy(0, 3, lh-3, "Shooter");
+		AddEnemy(0, lw-3, lh-3, "Shooter");
+		NewWave(100);
+		AddEnemy(0, lw/2, lh/2, "Standspawner");
+		NewWave(100);
+		AddEnemy(0, 8, lh-4, "Standspawner");
+		AddEnemy(0, lw-8, 4, "Standspawner");
+		NewWave(100);
+		AddEnemy(0, lw-8, lh-4, "Shooter");
+		AddEnemy(0, 8, 4, "Shooter");
+		NewWave(100);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, lw/2+10*Mathf.Cos(ii*Mathf.PI/4), 0.5f+10*Mathf.Sin(ii*Mathf.PI/4), "Chaser");
 		}
-		NewWave(8);
-		for (int ii = 1; ii <= 3; ii++) {
-			for (int jj = 1; jj <= 3; jj++) {
-				AddEnemy(1+ii, lh-jj, "Bouncer");
-			}
+		NewWave(100);
+		for (int ii = 0; ii < 5; ii++) {
+			AddEnemy(0, lw/2+10*Mathf.Cos(Mathf.PI+ii*Mathf.PI/4), (lh-0.5f)+10*Mathf.Sin(Mathf.PI+ii*Mathf.PI/4), "Chaser");
 		}
-		NewWave(5);
-		AddEnemy(lw/2, lh/2, "Shooter");
-		AddEnemy(1, lh/2, "Bouncer");
-		AddEnemy(lw-1, lh/2, "Bouncer");
-		AddEnemy(lw/2, 1, "Bouncer");
-		AddEnemy(lw/2, lh-1, "Bouncer");
-		NewWave(6);
-		AddEnemy(lw/4, lh/4, "Shooter");
-		AddEnemy(3*lw/4, 3*lh/4, "Shooter");
-		AddEnemy(lw/4, 3*lh/4, "Chaser");
-		AddEnemy(3*lw/4, lh/4, "Chaser");
-		NewWave(8);
-		for (int ii = 1; ii < lw; ii += 2) {
-			AddEnemy(ii, 1, "Chaser");
-			AddEnemy(ii, lh-1, "Chaser");
+		NewWave(100);
+		for (int ii = 1; ii < lh; ii+=2) {
+			AddEnemy(0, lw/2, ii, "Chaser");
 		}
-		NewWave(3);
-		AddEnemy(1,1, "Bouncer");
-		AddEnemy(lw-1,1, "Bouncer");
-		AddEnemy(1,lh-1, "Bouncer");
-		AddEnemy(lw-1,lh-1, "Bouncer");		
-		NewWave(3);
-		AddEnemy(lw/2,3, "Shooter");
-		AddEnemy(lw/2,lh-3, "Shooter");
-		NewWave(3);
-		AddEnemy(1, lh/2, "Bouncer");
-		AddEnemy(lw-1, lh/2, "Bouncer");
-		AddEnemy(lw/2, 1, "Bouncer");
-		AddEnemy(lw/2, lh-1, "Bouncer");
-		NewWave(10);
-		AddEnemy(3, lh/2, "Shooter");
-		AddEnemy(lw-3, lh/2, "Shooter");
-
-		// ending
-		NewWave(10);
-		for (int ii = 1; ii < 6; ii++) {
-			AddEnemy(lw/2+7*Mathf.Cos(2*Mathf.PI/6*ii), lh/2+7*Mathf.Sin(2*Mathf.PI/6*ii), "Shooter");
-		}
-		NewWave(20);
-		for (int ii = 3; ii < lw - 2; ii += 2) {
-			AddEnemy(ii, 1, "Bouncer");
-			AddEnemy(ii, lh-1, "Bouncer");
-		}
-		for (int ii = 3; ii < lh - 2; ii += 2) {
-			AddEnemy(1, ii, "Bouncer");
-			AddEnemy(lw-1, ii, "Bouncer");
-		}
-
-		NewWave(Mathf.Infinity);
-		AddEnemy(1,1, "Shooter");
-		AddEnemy(lw-1,1, "Shooter");
-		AddEnemy(1,lh-1, "Shooter");
-		AddEnemy(lw-1,lh-1, "Shooter");*/
+		AddEnemy(0, lw-3, lh/2-1, "Standspawner");
+		AddEnemy(0, lw-3, lh/2+1, "Shooter");
+		AddEnemy(0, 3, lh/2-1, "Shooter");
+		AddEnemy(0, 3, lh/2+1, "Standspawner");
 		EndLevel();
 	}
 }

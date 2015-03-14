@@ -254,7 +254,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451026, guid: 341245bd641464a45bca7fe72ef1cc5b, type: 2}
       propertyPath: levelName
-      value: Level3
+      value: Level2
       objectReference: {fileID: 0}
     - target: {fileID: 134082, guid: 341245bd641464a45bca7fe72ef1cc5b, type: 2}
       propertyPath: m_IsActive
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9892042479a4b54a8ac767c00faa0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Level3
+  levelName: Level2
   lives: 3
 --- !u!4 &262372962
 Transform:

@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 200
-  bubbleColor: {r: .0667743161, g: .654901981, b: .364933699, a: 1}
+  bubbleColor: {r: 0, g: 1, b: .0891366005, a: 1}
   speed: 8
   acceleration: 50
 --- !u!135 &13565048

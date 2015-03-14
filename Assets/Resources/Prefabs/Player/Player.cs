@@ -116,7 +116,6 @@ public class Player : qObject {
 			if (!other.gameObject.GetComponent<qObject>().isActive || isInvulnerable) return;
 			LevelManager.instance.SendMessage("qDie");
 		} else if (other.gameObject.tag == "coin") {
-			//ScoreManager.instance.combo += 1;
 			other.gameObject.SendMessage("qDie");
 			AudioManager.instance.playCoin();
 		}

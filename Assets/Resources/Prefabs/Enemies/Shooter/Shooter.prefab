@@ -57,7 +57,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157074}
-  m_Mesh: {fileID: 4300002, guid: 8375e1d8be7f7df4a8c996f250fa0d51, type: 3}
+  m_Mesh: {fileID: 4300002, guid: c25ba10fe025a714b83dfc9ef9018706, type: 3}
 --- !u!65 &6557074
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 100
-  bubbleColor: {r: 1, g: .434540391, b: 0, a: 1}
+  bubbleColor: {r: 1, g: .411764681, b: .883663774, a: 1}
   speed: 0
   shootingPeriod: 1.79999995
 --- !u!1001 &100100000
