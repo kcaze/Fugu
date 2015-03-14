@@ -116,14 +116,21 @@ public class _GridManager : qObject {
 				bl = grid.Coord(grid.WorldToGrid(enemyBounds.min));
 				tr = grid.Coord(grid.WorldToGrid(enemyBounds.max));
 				if (bl == null && tr == null) continue; // enemy lies outside grid
-				if (bl == null) bl = tr; // if enemy partially lies outside of grid
-				if (tr == null) tr = bl;
-				for (int jj = bl.first; jj <= tr.first; jj++) {
-					for (int kk = bl.second; kk <= tr.second; kk++) {
-						int enemyIndex = this.grid.WorldToGrid(new Vector3(jj*grid.tileWidth, 0, kk*grid.tileHeight));
-						if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
-							enemy.SendMessage("qDie");
-							goto outside;
+				if (bl == null || tr == null) { 
+					// enemy lies partially outside grid, we'll approximate by using enemy center.
+					int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
+					if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
+						enemy.SendMessage("qDie");
+					}
+				}
+				else {
+					for (int jj = bl.first; jj <= tr.first; jj++) {
+						for (int kk = bl.second; kk <= tr.second; kk++) {
+							int enemyIndex = this.grid.WorldToGrid(new Vector3(jj*grid.tileWidth, 0, kk*grid.tileHeight));
+							if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
+								enemy.SendMessage("qDie");
+								goto outside;
+							}
 						}
 					}
 				}

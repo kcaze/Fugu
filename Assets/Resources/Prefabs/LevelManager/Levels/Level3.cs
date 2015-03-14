@@ -9,16 +9,30 @@ public class Level3 : Level {
 		NewWave(100);
 		AddEnemy(0, lw/2, 5, "Stander");
 		AddEnemy(0, lw/2, lh-5, "Stander");
+		AddEnemy(0, 5, lh/2, "Shooter");
+		AddEnemy(0, lw-5, lh/2, "Shooter");
 		NewWave(100);
 		AddEnemy(0, 5, lh/2, "Standspawner");
 		AddEnemy(0, lw-5, lh/2, "Standspawner");
+		AddEnemy(0, lw/2, 5, "Shooter");
+		AddEnemy(0, lw/2, lh-5, "Shooter");
 		NewWave(100);
 		for (int ii = 0; ii < 5; ii++) {
 			AddEnemy(0, 5+4*Mathf.Cos(Mathf.PI/2 + 2*Mathf.PI/20*ii), lh-5+4*Mathf.Sin(Mathf.PI/2+2*Mathf.PI/20*ii), "Chaser");
 		}
+		for (int ii = 0; ii < 2; ii++) {
+			for (int jj = 0; jj < 2; jj++) {
+				AddEnemy(0, lw-5+ii*2, lh-5+jj*2, "Stander");
+			}
+		}
 		NewWave(100);
 		for (int ii = 0; ii < 5; ii++) {
 			AddEnemy(0, lw-5+4*Mathf.Cos(2*Mathf.PI/20*ii), lh-5+4*Mathf.Sin(2*Mathf.PI/20*ii), "Chaser");
+		}
+		for (int ii = 0; ii < 2; ii++) {
+			for (int jj = 0; jj < 2; jj++) {
+				AddEnemy(0, 5-ii*2, lh-5+jj*2, "Stander");
+			}
 		}
 		NewWave(100);
 		for (int ii = 0; ii < 5; ii++) {
@@ -64,13 +78,15 @@ public class Level3 : Level {
 		for (int ii = 1; ii < 10; ii += 2) {
 			AddEnemy(0.0f, ii*lw/10.0f, ii*lh/10.0f, "Standspawner");
 		}
+		AddEnemy(0.0f, lw/4, 3*lh/4, "Chaser");
+		AddEnemy(0.0f, 3*lw/4, lh/4, "Chaser");
 		NewWave(100);
 		for (int ii = 0; ii < 6; ii += 1) {
 			AddEnemy(0.0f, lw/2+9*Mathf.Cos(ii*Mathf.PI/3), lh/2+9*Mathf.Sin(ii*Mathf.PI/3), "Chaser");
 		}
 		NewWave(100);
-		for (int ii = 0; ii < 3; ii += 1) {
-			AddEnemy(0.0f, lw/2+9*Mathf.Cos((ii+0.5f)*2*Mathf.PI/3), lh/2+9*Mathf.Sin((ii+0.5f)*2*Mathf.PI/3), "Twohitter");
+		for (int ii = 0; ii < 6; ii += 1) {
+			AddEnemy(0.0f, lw/2+8*Mathf.Cos((ii+0.5f)*Mathf.PI/3), lh/2+8*Mathf.Sin((ii+0.5f)*Mathf.PI/3), (ii % 2 == 0) ? "Twohitter" : "Chaser");
 		}
 		EndLevel();
 	}

@@ -55,7 +55,7 @@ public class Twohitter : qEnemy {
 		if (killable == false) {
 			killable = true;
 			Destroy(shell);
-			speed *= 1.4f;
+			speed *= 2.5f;
 			GameObject explosion = Instantiate(Resources.Load("Prefabs/ParticleEffects/Explosion")) as GameObject;
 			explosion.transform.position = transform.position;
 			AudioManager.instance.playDeath();

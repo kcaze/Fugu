@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 200
-  bubbleColor: {r: 0, g: 1, b: .0891366005, a: 1}
+  bubbleColor: {r: 1, g: .518105865, b: 0, a: 1}
   speed: 8
   acceleration: 50
 --- !u!135 &13565048
@@ -99,8 +99,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: .600000024
+  m_Center: {x: 0, y: .5, z: .100000001}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
