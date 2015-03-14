@@ -6,24 +6,16 @@ public class _GridManager : qObject {
 	public Grid grid;
 	public float trailDuration;
 	private Player player;
-	private LineRenderer line;
-	private int npoints;
-	private Vector3 prevPos;
-	private float lineThreshold;
 
 	protected override void qAwake () {
 		this.player = (Player) FindObjectOfType(typeof(Player));
 		this.grid = gameObject.GetComponent<Grid>();
-		this.npoints = 0;
-		this.line  = GetComponent<LineRenderer>();
-		this.prevPos = player.transform.position;
-		this.lineThreshold = 0.3f;
 	}
 
 	protected override void qStart() {
 		this.grid.Initialize(LevelManager.instance.levelWidth, LevelManager.instance.levelHeight);
 	}
-	
+
 	private IEnumerator FillEmpty() {
 		yield return new WaitForSeconds(0.15f); //TODO: avoid hardcoded values
 		for (int ii = 0; ii < grid.gridSize; ii++) {
@@ -36,26 +28,58 @@ public class _GridManager : qObject {
 	}
 
 	private void Update () {
-		int index = this.grid.WorldToGrid(player.transform.position);
+		if (player.trail == TrailEnum.normal) {
+			// TODO: this is probably buggy  
+			// attempts to player's position and highlight the intermediate squares
+			// it corrects for lag which can cause the player to "teleport".
+			// the following is essentially just Wikipedia's pseudocode for Bresenham's algorithm
+			Tuple<int,int> prevCoord = grid.Coord(grid.WorldToGrid(player.previousPosition));
+			Tuple<int,int> coord = grid.Coord(grid.WorldToGrid(player.transform.position));
+			int x0, x1, y0, y1;
+			if (prevCoord.first > coord.first) {
+				x0 = coord.first;
+				x1 = prevCoord.first;
+				y0 = coord.second;
+				y1 = prevCoord.second;
+			} else {
+				x0 = prevCoord.first;
+				x1 = coord.first;
+				y0 = prevCoord.second;
+				y1 = coord.second;
+
+			}
+			// vertical line
+			if (x0 == x1) {
+				if (y0 > y1) { y0 = y0+y1; y1 = y0-y1; y0 = y0-y1; } // swap y0 and y1
+				for (int y = y0; y <= y1; y++) {
+					HandleTrail(x0, y);
+				}
+			} else {
+				float dx = x1 - x0;
+				float dy = y1 - y0;
+				float err = 0;
+				float derr = Mathf.Abs(dy/dx);
+				int y = y0;
+				for (int x = x0; x <= x1; x++) {
+					HandleTrail(x,y);
+					err = err + derr;
+					while (err >= 0.5) {
+						HandleTrail(x,y);
+						y = y + (y1 == y0 ? 0 : (y1 > y0 ? 1 : -1));
+						err = err - 1;
+					}
+				}
+			}
+		}
+	}
+
+	private void HandleTrail(int x, int y) {
+		int index = grid.Index(x,y);
 		if (index == -1) {
 			Debug.LogError("Player outside level bounds!");
 			return;
 		}
-		HandleTrail(index);
-		if ((player.transform.position-this.prevPos).magnitude > lineThreshold) {
-			this.line.SetVertexCount(npoints+1);
-			this.line.SetPosition(npoints, player.transform.position);
-			npoints++;
-			this.prevPos = player.transform.position;
-		}
-	}
-
-	private void HandleTrail(int index) {
-		if (this.grid.grid[index] == TileEnum.normal && player.trail == TrailEnum.normal) {
-			this.grid.durationGrid[index] = trailDuration;
-		}
-		if (this.grid.grid[index] == TileEnum.normal || this.grid.grid[index] == TileEnum.normalCircled) return;
-		if (player.trail != TrailEnum.normal) return;
+		if (grid.grid[index] == TileEnum.normalCircled) return;
 		this.grid.grid[index] = TileEnum.normal;
 		this.grid.durationGrid[index] = trailDuration;
 
@@ -105,8 +129,6 @@ public class _GridManager : qObject {
 				}
 				outside: continue;
 			}
-			this.line.SetVertexCount(0);
-			npoints = 0;
 		}
 	}
 	

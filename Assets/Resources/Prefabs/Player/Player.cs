@@ -11,6 +11,8 @@ public class Player : qObject {
 	public float turnSpeed;
 	public float shieldTime;
 	public int bombs;
+	[System.NonSerialized]
+	public Vector3 previousPosition;
 
 	private float maxSpeed;
 	public TrailEnum trail { get; private set; }
@@ -57,16 +59,6 @@ public class Player : qObject {
 			if (val == 0) return;
 			GridManager.instance.SendMessage("ClearNormal");
 		}
-		else if (type == "Bomb") {
-			if (val == 0 || bombs <= 0) return;
-			bombs--;
-			GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-			for (int ii = 0; ii < enemies.Length; ii++) {
-				if (enemies[ii].GetComponent<qObject>().isActive) {
-					enemies[ii].SendMessage("qDie");
-				}
-			}
-		}
 	}
 
 	protected override void qAwake() {
@@ -84,6 +76,8 @@ public class Player : qObject {
 	}
 	
 	protected override void qUpdate() {
+		previousPosition = transform.position;
+
 		// movement code
 		float magnitude = Mathf.Sqrt(Mathf.Pow(velocityHorizontal,2) + Mathf.Pow(velocityVertical,2));
 		if (magnitude > maxSpeed) {
@@ -98,8 +92,8 @@ public class Player : qObject {
 		}
 		Vector3 ds = new Vector3(velocityHorizontal*Time.deltaTime, 0, velocityVertical*Time.deltaTime);
 		Vector3 position = transform.position + ds;
-		position.x = Mathf.Clamp(position.x, 0, LevelManager.instance.levelWidth-0.001f);
-		position.z = Mathf.Clamp(position.z, 0, LevelManager.instance.levelHeight-0.001f);
+		position.x = Mathf.Clamp(position.x, 0, LevelManager.instance.levelWidth-0.01f);
+		position.z = Mathf.Clamp(position.z, 0, LevelManager.instance.levelHeight-0.01f);
 		transform.position = position;
 
 		// rotation code
@@ -142,7 +136,6 @@ public class Player : qObject {
 		isInvulnerable = true;
 		StartCoroutine(becomeVulnerable());
 		shield.Activate(shieldTime);
-
 	}
 
 	protected override void qDie() {

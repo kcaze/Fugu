@@ -22,21 +22,21 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Detail
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _Illum
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 5ef168ffed1db5a449d382d6f1b0ba57, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _ToonShade
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Detail
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -51,12 +51,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Shininess
-        second: .699999988
-      data:
-        first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Shininess
+        second: .699999988
       data:
         first:
           name: _EmissionLM
@@ -72,16 +72,16 @@ Material:
         second: {r: 0, g: 1, b: .0896551609, a: 1}
       data:
         first:
+          name: _TintColor
+        second: {r: 0, g: 1, b: .255172253, a: .501960814}
+      data:
+        first:
           name: _Emission
         second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _SpecColor
         second: {r: .669117689, g: .526438177, b: .526438177, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0, g: 1, b: .255172253, a: .501960814}
       data:
         first:
           name: _OutlineColor

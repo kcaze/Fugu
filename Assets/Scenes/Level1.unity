@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &58400454
 AudioSource:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451026, guid: 341245bd641464a45bca7fe72ef1cc5b, type: 2}
       propertyPath: levelName
-      value: Level2
+      value: Level4
       objectReference: {fileID: 0}
     - target: {fileID: 134082, guid: 341245bd641464a45bca7fe72ef1cc5b, type: 2}
       propertyPath: m_IsActive
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9892042479a4b54a8ac767c00faa0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Level2
+  levelName: Level4
   lives: 3
 --- !u!4 &262372962
 Transform:
@@ -736,7 +736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &866701112
 Light:
   m_ObjectHideFlags: 0
