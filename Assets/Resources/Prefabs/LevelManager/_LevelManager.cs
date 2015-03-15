@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,14 +23,23 @@ public class _LevelManager : qObject {
 	
 	public void Pause() {
 		Time.timeScale = 0;
-		isActive = false;
-		ui.Pause();
+        if (isActive)
+        {
+            (GameObject.Find("Canvas").GetComponent<UICanvas>() as UICanvas).pausescreen.SetActive(true);
+            isActive = false;
+        }
+          // Pause();
+        
 	}
 
 	public void Unpause() {
 		Time.timeScale = 1;
-		isActive = true;
-		ui.Unpause();
+        if (!isActive)
+        {
+            (GameObject.Find("Canvas").GetComponent<UICanvas>() as UICanvas).pausescreen.SetActive(false);
+            isActive = true;
+        }
+           // Unpause();
 	}
 
 	public override void HandleInput(string type, float val) {
