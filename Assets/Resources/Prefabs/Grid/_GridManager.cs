@@ -98,12 +98,10 @@ public class _GridManager : qObject {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 		if (enclosed) {
 			AudioManager.instance.playCircled();
-			float tileCount = 0;
 
 			for (int ii = 0; ii < grid.gridSize; ii++) {
 				if (grid.grid[ii] == TileEnum.normal) {
 					grid.grid[ii] = TileEnum.normalCircled;
-					tileCount++;
 				}
 			}
 

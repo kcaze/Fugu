@@ -13,6 +13,8 @@ public class Player : qObject {
 	public int bombs;
 	[System.NonSerialized]
 	public Vector3 previousPosition;
+	[System.NonSerialized]
+	public Vector3 attractDirection;
 
 	private float maxSpeed;
 	public TrailEnum trail { get; private set; }
@@ -24,6 +26,7 @@ public class Player : qObject {
 	private LevelManager levelManager;
 	private float rotationSpeedThreshold = 0.01f; // minimum speed necessary before rotations happens
 	private Shield shield;
+	private float slowMultiplier;
 	private new Light light;
 
 	public override void HandleInput(string type, float val) {
@@ -55,9 +58,13 @@ public class Player : qObject {
 			light.enabled = false;
 			maxSpeed = maxNoTrailSpeed;
 		}
-		else if (type == "TrailClear") {
+		else if (type == "SlowDown") {
 			if (val == 0) return;
-			GridManager.instance.SendMessage("ClearNormal");
+			slowMultiplier = 0.5f;
+		}
+		else if (type == "SlowUp") {
+			if (val == 0) return;
+			slowMultiplier = 1.0f;
 		}
 	}
 
@@ -80,10 +87,17 @@ public class Player : qObject {
 
 		// movement code
 		float magnitude = Mathf.Sqrt(Mathf.Pow(velocityHorizontal,2) + Mathf.Pow(velocityVertical,2));
-		if (magnitude > maxSpeed) {
-			velocityHorizontal *= maxSpeed/magnitude;
-			velocityVertical *= maxSpeed/magnitude;
+		if (magnitude > maxSpeed*slowMultiplier) {
+			velocityHorizontal *= maxSpeed*slowMultiplier/magnitude;
+			velocityVertical *= maxSpeed*slowMultiplier/magnitude;
 		}
+
+		if (!isInvulnerable) {
+			// logic for interaction with attracter enemy
+			velocityHorizontal += attractDirection.x;
+			velocityVertical += attractDirection.z;
+		}
+
 		if (Mathf.Abs(velocityHorizontal) < minSpeed) {
 			velocityHorizontal = 0;
 		}
@@ -92,8 +106,10 @@ public class Player : qObject {
 		}
 		Vector3 ds = new Vector3(velocityHorizontal*Time.deltaTime, 0, velocityVertical*Time.deltaTime);
 		Vector3 position = transform.position + ds;
-		position.x = Mathf.Clamp(position.x, 0, LevelManager.instance.levelWidth-0.01f);
-		position.z = Mathf.Clamp(position.z, 0, LevelManager.instance.levelHeight-0.01f);
+		float tileWidth = GridManager.instance.grid.tileWidth;
+		float tileHeight = GridManager.instance.grid.tileHeight;
+		position.x = Mathf.Clamp(position.x, tileWidth/4.0f, LevelManager.instance.levelWidth-tileWidth/4.0f);
+		position.z = Mathf.Clamp(position.z, tileHeight/4.0f, LevelManager.instance.levelHeight-tileHeight/4.0f);
 		transform.position = position;
 
 		// rotation code
@@ -111,6 +127,7 @@ public class Player : qObject {
 			LevelManager.instance.SendMessage("qDie");
 		} else if (other.gameObject.tag == "coin") {
 			other.gameObject.SendMessage("qDie");
+			ScoreManager.instance.IncrementCoins();
 			AudioManager.instance.playCoin();
 		}
 	}
@@ -118,6 +135,7 @@ public class Player : qObject {
 	private void Reset() {
 		velocityHorizontal = 0;
 		velocityVertical = 0;
+		slowMultiplier = 1;
 		transform.position = new Vector3(LevelManager.instance.levelWidth/2, 
 		                                 transform.position.y, 
 		                                 LevelManager.instance.levelHeight/2);

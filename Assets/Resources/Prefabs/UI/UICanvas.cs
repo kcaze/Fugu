@@ -43,15 +43,17 @@ public class UICanvas : MonoBehaviour {
         score = curscore;
     }
 
-     public void ReturnToMainMenu()
-    {
+    public void ReturnToMainMenu() {
+		LevelManager.instance.Unpause();
         Application.LoadLevel("Main Menu");
     }
 
-    public void Retry()
-    {
+    public void Retry() {
+		LevelManager.instance.Unpause();
         Application.LoadLevel(Application.loadedLevel);
     }
 
-  
+	public void Unpause() {
+		LevelManager.instance.Unpause();
+	}
 }

@@ -9,15 +9,22 @@ public class _ScoreManager : MonoBehaviour {
 	public int combo;
 	[System.NonSerialized]
 	public float comboMeter;
+	[System.NonSerialized]
+	public int coins;
 
 	private void Awake() {
 		score = 0;
-		combo = 1;
+		combo = 0;
+		coins = 0;
 	}
 
 	public void IncrementCombo() {
 		combo++;
 		comboMeter = comboDuration;
+	}
+
+	public void IncrementCoins() {
+		coins++;
 	}
 
 	public void AddScore(int score) {

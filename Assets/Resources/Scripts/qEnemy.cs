@@ -17,11 +17,9 @@ public class qEnemy : qObject {
 	protected override void qDie() {
 		ScoreManager.instance.IncrementCombo();
 
-
 		GameObject comboText = (GameObject)Instantiate(Resources.Load("Prefabs/Misc/ComboTextTest", typeof(GameObject)));
 		comboText.GetComponent<TextMesh>().text = ""+ScoreManager.instance.combo;
 		comboText.transform.position = transform.position+new Vector3(0, 0.5f, 0);
-
 
 		ScoreManager.instance.AddScore(score);
 		Instantiate(Resources.Load("Prefabs/Misc/Coin", typeof(GameObject)), transform.position, Quaternion.identity);

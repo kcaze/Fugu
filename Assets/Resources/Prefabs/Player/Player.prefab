@@ -182,7 +182,7 @@ TrailRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: .300000012
+  m_Time: .150000006
   m_StartWidth: .800000012
   m_EndWidth: 0
   m_Colors:
@@ -254,7 +254,7 @@ MonoBehaviour:
   acceleration: 12000
   friction: .5
   turnSpeed: 999999996000
-  shieldTime: 5
+  shieldTime: 4
   bombs: 3
 --- !u!114 &11443664
 MonoBehaviour:

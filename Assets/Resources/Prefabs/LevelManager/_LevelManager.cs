@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -19,27 +19,20 @@ public class _LevelManager : qObject {
 	private float waveBeginTime;
 	private float nextWaveTime;
 	private bool waveDoneSpawning;
-	private UI ui;
-	
+	private UICanvas uiCanvas; 
+
 	public void Pause() {
 		Time.timeScale = 0;
-        if (isActive)
-        {
-            (GameObject.Find("Canvas").GetComponent<UICanvas>() as UICanvas).pausescreen.SetActive(true);
-            isActive = false;
-        }
-          // Pause();
-        
+		isActive = false;
+		uiCanvas.pausescreen.SetActive(true);
+		//ui.Pause();
 	}
 
 	public void Unpause() {
 		Time.timeScale = 1;
-        if (!isActive)
-        {
-            (GameObject.Find("Canvas").GetComponent<UICanvas>() as UICanvas).pausescreen.SetActive(false);
-            isActive = true;
-        }
-           // Unpause();
+		isActive = true;
+		uiCanvas.pausescreen.SetActive(false);
+		//ui.Unpause();
 	}
 
 	public override void HandleInput(string type, float val) {
@@ -55,12 +48,11 @@ public class _LevelManager : qObject {
 	}
 
 	protected override void qAwake() {
-		ui = (UI) FindObjectOfType(typeof(UI));
+		uiCanvas = (UICanvas) FindObjectOfType(typeof(UICanvas));
 		level = (Level) gameObject.AddComponent(levelName);
 		level.Setup();
 		levelWidth = level.lw;
 		levelHeight = level.lh;
-		time = 0;
 		nextWaveTime = level.waveTimes[0];
 		waveNumber = 0;
 		player = (Player) FindObjectOfType(typeof(Player));
@@ -124,11 +116,14 @@ public class _LevelManager : qObject {
 
 	protected override void qDie() {
 		lives--;
-		if (lives == 0) {
+		if (lives < 0) {
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		//AudioManager.instance.playDeath();
 		player.SendMessage("qDie");
+		GameObject[] coins = GameObject.FindGameObjectsWithTag("coin");
+		for (int ii = 0; ii < coins.Length; ii++) {
+			Destroy(coins[ii]);
+		}
 		GridManager.instance.SendMessage("ClearNormal");
 		nextWaveTime = time+level.waveTimes[waveNumber];
 	}
