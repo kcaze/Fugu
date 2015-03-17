@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Water5
+  m_Name: Water1
   m_Shader: {fileID: 4800000, guid: 475c4a4e617a8401b84ca7b32c7cc460, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -157,15 +157,15 @@ Material:
       data:
         first:
           name: _Shininess
-        second: 313.218384
+        second: 122
       data:
         first:
           name: _FresnelScale
-        second: 2.02999997
+        second: 1.33000004
       data:
         first:
           name: _GerstnerIntensity
-        second: .150000006
+        second: .170000002
       data:
         first:
           name: _HeightDisplacement
@@ -258,7 +258,7 @@ Material:
       data:
         first:
           name: _DistortParams
-        second: {r: 1.43999994, g: .242857143, b: .280000001, a: -.531428456}
+        second: {r: 1.25999999, g: .242857143, b: .379999995, a: -.531428456}
       data:
         first:
           name: _InvFadeParemeter
@@ -282,11 +282,11 @@ Material:
       data:
         first:
           name: _BaseColor
-        second: {r: .00661284104, g: .0860406384, b: .168627456, a: 1}
+        second: {r: .181730092, g: .317575395, b: .458823532, a: 1}
       data:
         first:
           name: _ReflectionColor
-        second: {r: .0978085324, g: .2805641, b: .470588237, a: 1}
+        second: {r: .768627465, g: .886274517, b: .996078432, a: 1}
       data:
         first:
           name: _SpecularColor
@@ -294,7 +294,7 @@ Material:
       data:
         first:
           name: _WorldLightDir
-        second: {r: -.98471868, g: -.171585679, b: .0297981799, a: 0}
+        second: {r: -.99018538, g: -.139357179, b: .0106280446, a: 0}
       data:
         first:
           name: _Foam
@@ -302,19 +302,19 @@ Material:
       data:
         first:
           name: _GAmplitude
-        second: {r: .5, g: .75999999, b: .430000007, a: .219999999}
+        second: {r: .699999988, g: .75999999, b: .375, a: .224999994}
       data:
         first:
           name: _GFrequency
-        second: {r: 1.39999998, g: .379999995, b: 1, a: 2.5999999}
+        second: {r: .899999976, g: .300000012, b: .589999974, a: .600000024}
       data:
         first:
           name: _GSteepness
-        second: {r: 1.5, g: 2, b: 3.5999999, a: 2}
+        second: {r: 2, g: 2.79999995, b: 6, a: 2}
       data:
         first:
           name: _GSpeed
-        second: {r: -4, g: 2, b: 1, a: 2.5}
+        second: {r: -2, g: 1.29999995, b: .800000012, a: 1.79999995}
       data:
         first:
           name: _GDirectionAB
@@ -322,7 +322,7 @@ Material:
       data:
         first:
           name: _GDirectionCD
-        second: {r: .449999988, g: .600000024, b: .600000024, a: .200000003}
+        second: {r: .370000005, g: -.600000024, b: .100000001, a: .800000012}
       data:
         first:
           name: _DepthColor

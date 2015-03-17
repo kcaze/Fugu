@@ -91,11 +91,11 @@ Material:
       data:
         first:
           name: _FresnelScale
-        second: .870000005
+        second: 3.99000001
       data:
         first:
           name: _GerstnerIntensity
-        second: .370000005
+        second: -.0599999987
       data:
         first:
           name: _HeightDisplacement
@@ -112,7 +112,7 @@ Material:
       data:
         first:
           name: _DistortParams
-        second: {r: 1.02857149, g: .201872215, b: .310000002, a: -.417142838}
+        second: {r: 1.01999998, g: .202000007, b: .310000002, a: -.417142838}
       data:
         first:
           name: _InvFadeParemeter
@@ -136,11 +136,11 @@ Material:
       data:
         first:
           name: _BaseColor
-        second: {r: .0431372561, g: 0, b: .0705882385, a: 1}
+        second: {r: 0, g: 0, b: .109803922, a: 1}
       data:
         first:
           name: _ReflectionColor
-        second: {r: .270588249, g: .101960786, b: .282352954, a: 1}
+        second: {r: .0456747375, g: .19094564, b: .211764708, a: 1}
       data:
         first:
           name: _SpecularColor
@@ -148,7 +148,7 @@ Material:
       data:
         first:
           name: _WorldLightDir
-        second: {r: -.984718561, g: -.160645336, b: -.0672509968, a: 0}
+        second: {r: -.984718561, g: -.171409845, b: -.030793786, a: 0}
       data:
         first:
           name: _Foam
@@ -156,7 +156,7 @@ Material:
       data:
         first:
           name: _GAmplitude
-        second: {r: 3, g: .200000003, b: 2.4000001, a: 2}
+        second: {r: 2, g: .600000024, b: 2, a: 1.60000002}
       data:
         first:
           name: _GFrequency
@@ -168,7 +168,7 @@ Material:
       data:
         first:
           name: _GSpeed
-        second: {r: 4, g: 5, b: 1, a: 2}
+        second: {r: 7, g: 5, b: 5.69999981, a: 2}
       data:
         first:
           name: _GDirectionAB
