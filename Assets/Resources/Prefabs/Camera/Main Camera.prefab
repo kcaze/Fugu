@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followWidth: 5
   followHeight: 5
+  tiltDegree: 8
 --- !u!124 &12446546
 Behaviour:
   m_ObjectHideFlags: 1

@@ -67,6 +67,16 @@ public class Grid : MonoBehaviour {
 		return this.Index(x,y);
 	}
 
+	/* Converts a point in world space to grid coordinate. 
+	 * The y-coordinate is ignored.
+	 * Works even for points that lie outside the grid */
+	public Tuple<int,int> WorldToGridCoord(Vector3 worldPoint) {
+		Vector3 localPoint = transform.InverseTransformPoint(worldPoint);
+		int x = (int)(localPoint.x/this.tileWidth);
+		int y = (int)(localPoint.z/this.tileHeight);
+		return new Tuple<int,int>(x,y);
+	}
+
 	/* Tests if the tile at position index is enclosed by tiles of type tileType.
 	 * Returns false if the tile at position index is already of type tileType.
 	 */

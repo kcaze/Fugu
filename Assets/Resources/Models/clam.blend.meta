@@ -1,20 +1,13 @@
 fileFormatVersion: 2
-guid: c25ba10fe025a714b83dfc9ef9018706
+guid: c747e5a5c6aec6f4f9870f54056fdadc
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Clam
-    100002: //RootNode
-    100004: Sphere
-    400000: Clam
-    400002: //RootNode
-    400004: Sphere
-    2300000: Clam
-    2300002: Sphere
-    3300000: Clam
-    3300002: Sphere
-    4300000: Sphere
-    4300002: Clam
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: clam
     7400000: Default Take
     9500000: //RootNode
   materials:

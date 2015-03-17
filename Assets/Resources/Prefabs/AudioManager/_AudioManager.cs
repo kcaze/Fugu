@@ -5,6 +5,8 @@ public class _AudioManager : MonoBehaviour {
 	public AudioSource circled;
 	public AudioSource enemyDeath;
 	public AudioSource playerDeath;
+	public AudioSource growl1;
+	public AudioSource growl2;
 	public AudioSource coin;
 
 	public void playCircled () {
@@ -21,6 +23,14 @@ public class _AudioManager : MonoBehaviour {
 
 	public void playCoin() {
 		coin.Play();
+	}
+
+	public void playGrowl1() {
+		growl1.Play();
+	}
+
+	public void playGrowl2() {
+		growl2.Play();
 	}
 }
 

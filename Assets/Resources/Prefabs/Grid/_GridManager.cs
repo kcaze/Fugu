@@ -76,7 +76,8 @@ public class _GridManager : qObject {
 	private void HandleTrail(int x, int y) {
 		int index = grid.Index(x,y);
 		if (index == -1) {
-			Debug.LogError("Player outside level bounds!");
+
+			Debug.LogError("Player outside level bounds at position ("+x+","+y+")!");
 			return;
 		}
 		if (grid.grid[index] == TileEnum.normalCircled) return;
@@ -111,24 +112,19 @@ public class _GridManager : qObject {
 				if (!enemy.GetComponent<qObject>().isActive) continue;
 				Bounds enemyBounds = enemy.collider.bounds;
 				Tuple<int,int> bl, tr;
-				bl = grid.Coord(grid.WorldToGrid(enemyBounds.min));
-				tr = grid.Coord(grid.WorldToGrid(enemyBounds.max));
-				if (bl == null && tr == null) continue; // enemy lies outside grid
-				if (bl == null || tr == null) { 
-					// enemy lies partially outside grid, we'll approximate by using enemy center.
-					int enemyIndex = this.grid.WorldToGrid(enemy.transform.position);
-					if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
-						enemy.SendMessage("qDie");
-					}
-				}
-				else {
-					for (int jj = bl.first; jj <= tr.first; jj++) {
-						for (int kk = bl.second; kk <= tr.second; kk++) {
-							int enemyIndex = this.grid.WorldToGrid(new Vector3(jj*grid.tileWidth, 0, kk*grid.tileHeight));
-							if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
-								enemy.SendMessage("qDie");
-								goto outside;
-							}
+				bl = grid.WorldToGridCoord(enemyBounds.min);
+				tr = grid.WorldToGridCoord(enemyBounds.max);
+				// clamp bounding box to lie in grid
+				bl.first = Mathf.Max(0, bl.first);
+				bl.second = Mathf.Max(0, bl.second);
+				tr.first = Mathf.Min(grid.gridWidth-1, tr.first);
+				tr.second = Mathf.Min(grid.gridHeight-1, tr.second); 
+				for (int jj = bl.first; jj <= tr.first; jj++) {
+					for (int kk = bl.second; kk <= tr.second; kk++) {
+						int enemyIndex = this.grid.WorldToGrid(new Vector3(jj*grid.tileWidth, 0, kk*grid.tileHeight));
+						if (this.grid.grid[enemyIndex] == TileEnum.normalCircled) {
+							enemy.SendMessage("qDie");
+							goto outside;
 						}
 					}
 				}

@@ -1,18 +1,31 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class MainMenuSelector : MonoBehaviour {
-    
-	// Use this for initialization
-	public void BackToMain () {
-        transform.FindChild("Levels").gameObject.SetActive(false);
-        Debug.Log("Main");
-        transform.FindChild("Main").gameObject.SetActive(true);
+	public GameObject mainMenuSelectedObject;
+	public GameObject levelSelectedObject;
+	EventSystem eventSystem;
+
+	public void Awake() {
+		eventSystem = (EventSystem) FindObjectOfType(typeof(EventSystem));
+		eventSystem.SetSelectedGameObject(mainMenuSelectedObject);
 	}
-	// Update is called once per frame
+
+	public void BackToMain () {
+        transform.FindChild("LevelsView").gameObject.SetActive(false);
+        transform.FindChild("Main").gameObject.SetActive(true);
+		eventSystem.SetSelectedGameObject(mainMenuSelectedObject);
+	}
+
 	public void Levels () {
         transform.FindChild("Main").gameObject.SetActive(false);
-        Debug.Log("Level");
-        transform.FindChild("Levels").gameObject.SetActive(true);
+        transform.FindChild("LevelsView").gameObject.SetActive(true);
+		mainMenuSelectedObject = eventSystem.currentSelectedGameObject;
+		eventSystem.SetSelectedGameObject(levelSelectedObject);
+	}
+
+	public void Quit() {
+		Application.Quit();
 	}
 }

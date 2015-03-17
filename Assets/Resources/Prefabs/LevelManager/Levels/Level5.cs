@@ -7,8 +7,6 @@ public class Level5 : Level {
 		lh = 20;
 		BeginLevel();
 		NewWave(100);
-		AddEnemy(0, lw/2, lh/2, "Twohitter");
-		NewWave(100);
 		for (int ii = 0; ii < 20; ii++) {
 			AddEnemy(0, lw/2+9*Mathf.Cos(ii*Mathf.PI/10), lh/2+9*Mathf.Sin(ii*Mathf.PI/10), "Chaser");
 		}

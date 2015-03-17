@@ -17,14 +17,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: ea5a160dd4a2cd34da6eab2b04490019, type: 3}
+          m_Texture: {fileID: 2800000, guid: d52f4bf36a2dc49489be4dab98c6c382, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Illum
         second:
-          m_Texture: {fileID: 2800000, guid: b2152fb22a3ad1f439aac5bd64911122, type: 3}
+          m_Texture: {fileID: 2800000, guid: b37f8d74f8123594d91f244816c956c8, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:

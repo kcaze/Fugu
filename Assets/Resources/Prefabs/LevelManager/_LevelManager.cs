@@ -24,15 +24,13 @@ public class _LevelManager : qObject {
 	public void Pause() {
 		Time.timeScale = 0;
 		isActive = false;
-		uiCanvas.pausescreen.SetActive(true);
-		//ui.Pause();
+		uiCanvas.Pause();
 	}
 
 	public void Unpause() {
 		Time.timeScale = 1;
 		isActive = true;
-		uiCanvas.pausescreen.SetActive(false);
-		//ui.Unpause();
+		uiCanvas.Unpause();
 	}
 
 	public override void HandleInput(string type, float val) {
@@ -64,6 +62,7 @@ public class _LevelManager : qObject {
 	}
 
 	protected override void qUpdate() {
+		if (!isActive) return;
 		time += Time.deltaTime;
 
 		// spawn enemies
@@ -92,7 +91,8 @@ public class _LevelManager : qObject {
 		if ((waveDoneSpawning && currentWaveCleared) || time >= nextWaveTime) {
 			waveNumber++;
 			if (waveNumber >= level.waves.Count) {
-				Victory();
+				StartCoroutine(Victory());
+				isActive = false;
 			}
 			else {
 				time = nextWaveTime;
@@ -110,7 +110,8 @@ public class _LevelManager : qObject {
 
 	}
 
-	private void Victory() {
+	private IEnumerator Victory() {
+		yield return new WaitForSeconds(2); 
 		Application.LoadLevel("Victory");
 	}
 
