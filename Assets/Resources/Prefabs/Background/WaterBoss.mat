@@ -160,7 +160,7 @@ Material:
       data:
         first:
           name: _GFrequency
-        second: {r: .129999995, g: .370000005, b: .400000006, a: .119999997}
+        second: {r: .5, g: .370000005, b: .400000006, a: .119999997}
       data:
         first:
           name: _GSteepness
@@ -172,11 +172,11 @@ Material:
       data:
         first:
           name: _GDirectionAB
-        second: {r: .300000012, g: .699999988, b: .25, a: -.25}
+        second: {r: .699999988, g: .300000012, b: .25, a: -.25}
       data:
         first:
           name: _GDirectionCD
-        second: {r: .200000003, g: -.800000012, b: -.699999988, a: .5}
+        second: {r: -.800000012, g: .200000003, b: -.699999988, a: .5}
       data:
         first:
           name: _DepthColor

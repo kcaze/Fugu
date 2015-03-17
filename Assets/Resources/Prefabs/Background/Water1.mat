@@ -258,7 +258,7 @@ Material:
       data:
         first:
           name: _DistortParams
-        second: {r: 1.25999999, g: .242857143, b: .379999995, a: -.531428456}
+        second: {r: 1.25999999, g: .242857143, b: .540000021, a: -.531428456}
       data:
         first:
           name: _InvFadeParemeter
@@ -282,11 +282,11 @@ Material:
       data:
         first:
           name: _BaseColor
-        second: {r: .181730092, g: .317575395, b: .458823532, a: 1}
+        second: {r: .186389834, g: .325718343, b: .470588237, a: 1}
       data:
         first:
           name: _ReflectionColor
-        second: {r: .768627465, g: .886274517, b: .996078432, a: 1}
+        second: {r: .621068835, g: .716824591, b: .80392158, a: 1}
       data:
         first:
           name: _SpecularColor

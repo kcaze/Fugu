@@ -860,8 +860,8 @@ Transform:
   m_PrefabInternal: {fileID: 1533054402}
   m_GameObject: {fileID: 370836228}
   m_LocalRotation: {x: -.0376679935, y: .706102788, z: -.0622876771, w: .704358101}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 2.41524887, y: 1.3839891, z: 1.52238321}
+  m_LocalPosition: {x: 1.32449998e-06, y: -4, z: -5.99999981e-15}
+  m_LocalScale: {x: 3.25385594, y: 1.86452901, z: 2.05097532}
   m_Children:
   - {fileID: 637250554}
   - {fileID: 1850093099}
@@ -3199,7 +3199,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.32449998e-06
       objectReference: {fileID: 0}
     - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3207,7 +3207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.99999981e-15
       objectReference: {fileID: 0}
     - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3228,6 +3228,18 @@ Prefab:
     - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
       propertyPath: m_RootOrder
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3.25385594
+      objectReference: {fileID: 0}
+    - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.86452901
+      objectReference: {fileID: 0}
+    - target: {fileID: 447018, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2.05097532
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed5e3971914405247b4c3a605077da5d, type: 2}
