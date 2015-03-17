@@ -3564,13 +3564,13 @@ TrailRenderer:
       rgba: 4294967295
     m_Color[1]:
       serializedVersion: 2
-      rgba: 3261096032
+      rgba: 4287714846
     m_Color[2]:
       serializedVersion: 2
-      rgba: 1579492645
+      rgba: 4284824597
     m_Color[3]:
       serializedVersion: 2
-      rgba: 1159075350
+      rgba: 4281407746
     m_Color[4]:
       serializedVersion: 2
       rgba: 1184274
@@ -3907,6 +3907,18 @@ Prefab:
     - target: {fileID: 443660, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9643664, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
+      propertyPath: m_Colors.m_Color[1].rgba
+      value: 4287714846
+      objectReference: {fileID: 0}
+    - target: {fileID: 9643664, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
+      propertyPath: m_Colors.m_Color[2].rgba
+      value: 4284824597
+      objectReference: {fileID: 0}
+    - target: {fileID: 9643664, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
+      propertyPath: m_Colors.m_Color[3].rgba
+      value: 4281407746
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13a1e8c79b9e19945987e98c019d3883, type: 2}
