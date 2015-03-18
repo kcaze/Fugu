@@ -17,4 +17,7 @@ public class LevelSelect : MonoBehaviour {
 	public void LoadLevel5() {
 		Application.LoadLevel("Level5");
 	}
+	public void LoadBoss1() {
+		Application.LoadLevel("Boss1");
+	}
 }

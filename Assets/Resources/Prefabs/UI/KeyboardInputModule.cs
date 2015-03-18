@@ -97,8 +97,8 @@
 			
 			var shouldActivate = Input.GetButtonDown (m_SubmitButton);
 			shouldActivate |= Input.GetButtonDown (m_CancelButton);
-			shouldActivate |= !Mathf.Approximately (Input.GetAxis (m_HorizontalAxis), 0.0f);
-			shouldActivate |= !Mathf.Approximately (Input.GetAxis (m_VerticalAxis), 0.0f);
+			shouldActivate |= !Mathf.Approximately (Input.GetAxisRaw (m_HorizontalAxis), 0.0f);
+			shouldActivate |= !Mathf.Approximately (Input.GetAxisRaw (m_VerticalAxis), 0.0f);
 			return shouldActivate;
 		}
 		
@@ -161,8 +161,8 @@
 		private Vector2 GetRawMoveVector()
 		{
 			Vector2 move = Vector2.zero;
-			move.x = Input.GetAxis (m_HorizontalAxis);
-			move.y = Input.GetAxis (m_VerticalAxis);
+			move.x = Input.GetAxisRaw (m_HorizontalAxis);
+			move.y = Input.GetAxisRaw (m_VerticalAxis);
 			
 			if (Input.GetButtonDown (m_HorizontalAxis))
 			{

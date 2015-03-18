@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ComboTimer : MonoBehaviour {
 	private MeshFilter meshFilter;
+	float inRadius = 0.9f;
+	float outRadius = 1.1f;
+	int divisions = 120;
 	Quaternion rotation;
 
 	void Awake() {
@@ -11,16 +14,17 @@ public class ComboTimer : MonoBehaviour {
 	}
 
 	void Update() {
-		GenerateMesh(ScoreManager.instance.comboMeter/ScoreManager.instance.comboDuration*360, 0.9f, 1.1f, 120);
+		GenerateMesh(ScoreManager.instance.comboMeter/ScoreManager.instance.comboDuration*360);
 		transform.rotation = rotation;
 	}
 
-	void GenerateMesh(float angle, float inRadius, float outRadius, int divisions) {
-		renderer.enabled = angle != 0;
+	void GenerateMesh(float angle) {
 		Mesh mesh = new Mesh();
 		Vector3[] vertices = new Vector3[2*divisions+6];
 		Vector2[] uv = new Vector2[2*divisions+6];
 		int[] triangles = new int[6*divisions+9];
+
+		renderer.enabled = angle != 0;
 		vertices[0] = new Vector3(0, 0, outRadius);
 		vertices[1] = new Vector3(inRadius*Mathf.Cos(Mathf.PI/2+Mathf.PI/divisions), 0, inRadius*Mathf.Sin(Mathf.PI/2+Mathf.PI/divisions));
 		vertices[2] = new Vector3(outRadius*Mathf.Cos(Mathf.PI/2+2*Mathf.PI/divisions), 0, outRadius*Mathf.Sin(Mathf.PI/2+2*Mathf.PI/divisions));
@@ -48,6 +52,5 @@ public class ComboTimer : MonoBehaviour {
 		mesh.triangles = triangles;
 		mesh.RecalculateNormals();
 		meshFilter.mesh = mesh;
-
 	}
 }

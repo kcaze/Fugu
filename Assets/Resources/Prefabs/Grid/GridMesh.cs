@@ -23,12 +23,14 @@ public class GridMesh : MonoBehaviour{
 	private Vector2[] uv;
 	private int[] triangles;
 	private Dictionary<TileEnum, Rect> uvRect;
+	private bool dirty;
 
 	private void Awake() {
 		this.grid = gameObject.GetComponent<Grid>();
 		this.meshFilter = gameObject.GetComponent<MeshFilter>();
 		this.meshRenderer = gameObject.GetComponent<MeshRenderer>();
 		this.tiles = (Tiles) gameObject.GetComponent<Tiles> ();
+		dirty = false;
 	}
 
 	// textures is an array of possible textures that could be applied to a tile
@@ -77,26 +79,27 @@ public class GridMesh : MonoBehaviour{
 		this.mesh.RecalculateNormals();
 		this.meshFilter.mesh = this.mesh;
 	}
-	
-	private void Update() {
+
+	public void UpdateMesh(int x, int y) {
 		int[] dx = {0,1,0,1};
 		int[] dy = {0,0,1,1};
-		for (int y = 0; y < this.grid.gridHeight; y++) {
-			for (int x = 0; x < this.grid.gridWidth; x++) {
-				Rect uvRect = this.uvRect[this.grid.grid[this.grid.Index(x,y)]];
-				for (int ii = 0; ii < 4; ii++) {
-					Vector2 uv = uvRectToUvPos(uvRect, dx[ii], dy[ii]);
-					this.uv[grid.Index(x,y)*4+ii] = uv;
-
-					// TODO: This is just a small example of a cool wave effect on the grid, not meant to actually
-					// be in the game.
-					//this.vertices[grid.Index(x,y)*4+ii].y = 0.5f*Mathf.Sin(((x-y+dx[ii]-dy[ii])%2)*Mathf.PI/2.0f+1.0f*Time.time);
-					//this.vertices[grid.Index(x,y)*4+ii].x += 0.01f*Mathf.Sin(Time.time + ((y+dy[ii])%2)*Mathf.PI/2);
-				}
-			}
+		Rect uvRect = this.uvRect[this.grid.grid[this.grid.Index(x,y)]];
+		for (int ii = 0; ii < 4; ii++) {
+			Vector2 uv = uvRectToUvPos(uvRect, dx[ii], dy[ii]);
+			this.uv[grid.Index(x,y)*4+ii] = uv;
 		}
+		dirty = true;
+	}
+
+	private void Update() {
+		if (dirty) {
+			RefreshMesh();
+			dirty = false;
+		}
+	}
+
+	public void RefreshMesh() {
 		this.mesh.uv = this.uv;
-		this.mesh.vertices = this.vertices;
 		this.mesh.RecalculateNormals();
 		this.meshFilter.mesh = this.mesh;
 	}

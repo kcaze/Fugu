@@ -32,6 +32,7 @@ public class UICanvas : MonoBehaviour {
 
 	public void Unpause() {
 		pausescreen.SetActive(false);
+		eventSystem.SetSelectedGameObject(null);
 	}
 
     public void ReturnToMainMenu() {

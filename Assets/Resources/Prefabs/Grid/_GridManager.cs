@@ -20,7 +20,8 @@ public class _GridManager : qObject {
 		yield return new WaitForSeconds(0.15f); //TODO: avoid hardcoded values
 		for (int ii = 0; ii < grid.gridSize; ii++) {
 			if (grid.grid[ii] == TileEnum.normalCircled) {
-				grid.grid[ii] = TileEnum.empty;
+				//grid.grid[ii] = TileEnum.empty;
+				grid.SetTile(ii, TileEnum.empty);
 				grid.durationGrid[ii] = 0;
 			}
 		}
@@ -81,7 +82,8 @@ public class _GridManager : qObject {
 			return;
 		}
 		if (grid.grid[index] == TileEnum.normalCircled) return;
-		this.grid.grid[index] = TileEnum.normal;
+		grid.SetTile(index, TileEnum.normal);
+		//this.grid.grid[index] = TileEnum.normal;
 		this.grid.durationGrid[index] = trailDuration;
 
 		int[] dx = {1, 0, -1, 0};
@@ -102,7 +104,8 @@ public class _GridManager : qObject {
 
 			for (int ii = 0; ii < grid.gridSize; ii++) {
 				if (grid.grid[ii] == TileEnum.normal) {
-					grid.grid[ii] = TileEnum.normalCircled;
+					grid.SetTile(ii, TileEnum.normalCircled);
+					//grid.grid[ii] = TileEnum.normalCircled;
 				}
 			}
 
@@ -136,7 +139,8 @@ public class _GridManager : qObject {
 	private void ClearNormal() {
 		for (int ii = 0; ii < grid.gridSize; ii++) {
 			if (grid.grid[ii] == TileEnum.normal) {
-				grid.grid[ii] = TileEnum.empty;
+				//grid.grid[ii] = TileEnum.empty;
+				grid.SetTile(ii, TileEnum.empty);
 			}
 		}
 	}

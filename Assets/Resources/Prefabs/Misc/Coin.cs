@@ -23,9 +23,15 @@ public class Coin : qObject {
 			speed = Mathf.Min(attractConstant/direction.magnitude, maxSpeed);
 			direction.Normalize();
 			velocity = speed*direction;
+			StartCoroutine(CollidePlayer());
 		}
 		transform.position += velocity*Time.deltaTime;
 		velocity *= friction;
+	}
+
+	IEnumerator CollidePlayer() {
+		yield return new WaitForSeconds(0.05f);
+		transform.position = player.transform.position;
 	}
 
 	private IEnumerator Animate(float time) {

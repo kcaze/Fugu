@@ -257,6 +257,10 @@ Material:
         second: {r: 1, g: 1, b: .100000001, a: .100000001}
       data:
         first:
+          name: _MainTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _DistortParams
         second: {r: 1.43999994, g: .242857143, b: .200000003, a: -.531428456}
       data:
@@ -331,10 +335,6 @@ Material:
         first:
           name: _RefractionFog
         second: {r: .505434752, g: .505434752, b: .505434752, a: .5}
-      data:
-        first:
-          name: _MainTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _ReflectionTex_ST

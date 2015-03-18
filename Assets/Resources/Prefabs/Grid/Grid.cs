@@ -13,8 +13,10 @@ public class Grid : MonoBehaviour {
 	public TileEnum[] grid;
 	public float[] durationGrid;
 	public int gridSize { get; private set; }
+	private GridMesh gridMesh;
 
 	public void Initialize(int gridWidth, int gridHeight) {
+		this.gridMesh = gameObject.GetComponent<GridMesh>();
 		this.gridWidth = (int)(gridWidth/tileWidth);
 		this.gridHeight = (int)(gridHeight/tileHeight);
 		this.gridSize = this.gridWidth*this.gridHeight;
@@ -30,7 +32,7 @@ public class Grid : MonoBehaviour {
 		for (int ii = 0; ii < this.gridSize; ii++) {
 			if (this.durationGrid[ii] > 0) {
 				this.durationGrid[ii]-= Time.deltaTime;
-				if (this.durationGrid[ii] <= 0 && this.grid[ii] == TileEnum.normal) this.grid[ii] = TileEnum.empty;
+				if (this.durationGrid[ii] <= 0 && this.grid[ii] == TileEnum.normal) SetTile(ii, TileEnum.empty);
 			}
 		}
 	}
@@ -41,6 +43,12 @@ public class Grid : MonoBehaviour {
 
 	private bool IsValidCoord(int x, int y) {
 		return (0 <= x && x < this.gridWidth && 0 <= y && y < this.gridHeight) ? true : false;
+	}
+
+	public void SetTile(int index, TileEnum tileEnum) {
+		Tuple<int, int> coord = Coord(index);
+		grid[index] = tileEnum;
+		gridMesh.UpdateMesh(coord.first, coord.second);
 	}
 
 	/* Converts (x,y) grid coordinate to grid index. 
@@ -106,6 +114,7 @@ public class Grid : MonoBehaviour {
 						seen.Add(index);
 						seenTypes.Add(this.grid[index]);
 						todo.Add(index);
+						//SetTile(index, tileType);
 						this.grid[index] = tileType;
 					}
 				}
@@ -113,6 +122,7 @@ public class Grid : MonoBehaviour {
 		}
 		loopBreak:
 		for (int ii = 0; ii < seen.Count; ii++) {
+			//SetTile(seen[ii], seenTypes[ii]);
 			this.grid[seen[ii]] = seenTypes[ii];
 		}
 		return ret;
@@ -129,7 +139,8 @@ public class Grid : MonoBehaviour {
 		int[] dy = {0, 1, 0, -1};
 		List<int> todo = new List<int> ();
 		todo.Add(index);
-		this.grid[index] = tileType;
+		SetTile(index, tileType);
+		//this.grid[index] = tileType;
 		for (int ii = 0; ii < todo.Count;) {
 			int count = todo.Count;
 			for (; ii < count; ii++) {
@@ -141,7 +152,8 @@ public class Grid : MonoBehaviour {
 					}
 					if (this.grid[index] != tileType) {
 						todo.Add(index);
-						this.grid[index] = tileType;
+						SetTile(index, tileType);
+						//this.grid[index] = tileType;
 					}
 				}
 			}
@@ -162,7 +174,8 @@ public class Grid : MonoBehaviour {
 		List<int> todo = new List<int> ();
 		TileEnum type = this.grid[index];
 		todo.Add(index);
-		this.grid[index] = tileType;
+		SetTile(index, tileType);
+		//this.grid[index] = tileType;
 		for (int ii = 0; ii < todo.Count;) {
 			int count = todo.Count;
 			for (; ii < count; ii++) {
@@ -173,7 +186,8 @@ public class Grid : MonoBehaviour {
 						continue;
 					}
 					todo.Add(index);
-					this.grid[index] = tileType;
+					SetTile(index, tileType);
+					//this.grid[index] = tileType;
 				}
 			}
 		}

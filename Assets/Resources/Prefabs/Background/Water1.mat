@@ -257,8 +257,12 @@ Material:
         second: {r: 1, g: 1, b: .100000001, a: .100000001}
       data:
         first:
+          name: _MainTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _DistortParams
-        second: {r: 1.25999999, g: .242857143, b: .540000021, a: -.531428456}
+        second: {r: 1.25999999, g: .242857143, b: .600000024, a: -.531428456}
       data:
         first:
           name: _InvFadeParemeter
@@ -282,11 +286,11 @@ Material:
       data:
         first:
           name: _BaseColor
-        second: {r: .186389834, g: .325718343, b: .470588237, a: 1}
+        second: {r: .131487891, g: .204007715, b: .279411793, a: 1}
       data:
         first:
           name: _ReflectionColor
-        second: {r: .621068835, g: .716824591, b: .80392158, a: 1}
+        second: {r: .456098616, g: .644663036, b: .816176474, a: 1}
       data:
         first:
           name: _SpecularColor
@@ -331,10 +335,6 @@ Material:
         first:
           name: _RefractionFog
         second: {r: .505434752, g: .505434752, b: .505434752, a: .5}
-      data:
-        first:
-          name: _MainTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _ReflectionTex_ST
